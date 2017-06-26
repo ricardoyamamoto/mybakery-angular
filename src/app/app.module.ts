@@ -16,12 +16,8 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-<<<<<<< Updated upstream
-import { UserListComponent } from './user/user-list-component';
-=======
 import { UserListComponent } from './user/user-list.component';
 import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
->>>>>>> Stashed changes
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
