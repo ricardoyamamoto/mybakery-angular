@@ -4,15 +4,29 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import {Angular2FontawesomeModule} from 'angular2-fontawesome';
+import {
+  MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
+  MdListModule, MdToolbarModule
+} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import 'hammerjs';
+
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+<<<<<<< Updated upstream
 import { UserListComponent } from './user/user-list-component';
+=======
+import { UserListComponent } from './user/user-list.component';
+import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
+>>>>>>> Stashed changes
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user', component: UserListComponent }
+  { path: 'users', component: UserListComponent }
 
 ];
 
@@ -22,12 +36,17 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    UserListComponent
+    UserListComponent,
+    TopToolbarComponent
   ],
   imports: [
+    Angular2FontawesomeModule,
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+    MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
+    MdListModule, MdToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

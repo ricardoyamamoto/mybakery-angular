@@ -9,7 +9,9 @@ export class TopToolbarComponent implements OnInit {
   @Input()
   title: string;
 
-  constructor() { }
+  constructor() {
+    this.title = 'myBakery';
+  }
 
   ngOnInit() {
   }
