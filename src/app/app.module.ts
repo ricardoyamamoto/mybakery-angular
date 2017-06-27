@@ -11,6 +11,7 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    FlexLayoutModule,
     MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
     MdListModule, MdToolbarModule,
     RouterModule.forRoot(appRoutes)
