@@ -2,6 +2,7 @@
 
 <md-list>
   <md-list-item *ngFor="let user of users">
-    <p>{{user.name}}</p>
+    <h3>{{user.firstName}} {{user.lastName}}</h3>
+    <p>{{user.email}}</p>
   </md-list-item>
 </md-list>

@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UserListComponent } from './user/user-list.component';
 import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
+import { UserListService } from './user/user-list.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
     MdListModule, MdToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [UserListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
