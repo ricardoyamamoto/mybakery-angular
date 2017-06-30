@@ -17,10 +17,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 	npm install
 	
 	5) To execute the project, run:
-	ng serve
+	npm run build
 	
 	6) Open the project in the browser:
-  http://localhost:4200/
+  http://localhost:3000/
 
 
 ## Development server
