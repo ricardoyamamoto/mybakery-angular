@@ -16,10 +16,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 	4) Open the Project folder in the prompt command and run:
 	npm install
 	
-	5) To execute the project, run:
+	5) Start MongoDB
+	mongod
+	
+	6) To execute the project, run:
 	npm run build
 	
-	6) Open the project in the browser:
+	7) Open the project in the browser:
   http://localhost:3000/
 
 
