@@ -13,7 +13,7 @@ export class UserListService {
 
   readAll(): Observable<User[]> {
     return this.http
-      .get('/api/user')
+      .get('http://localhost:3000/user')
       .map(response => response.json() as User[]);
   }
 }
