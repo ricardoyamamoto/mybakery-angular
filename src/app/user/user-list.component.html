@@ -1,6 +1,9 @@
+<h3>User List</h3>
+<button md-raised-button routerLink="/user-detail">New</button>
 <md-list>
-  <md-list-item *ngFor="let user of users">
-    <h3>{{user.firstName}} {{user.lastName}}</h3>
-    <p>{{user.email}}</p>
+  <md-list-item *ngFor="let user of users" isRippleEnabled="true">
+      <h4 md-line>{{user.firstName}} {{user.lastName}}</h4>
+      <span md-line>{{user.email}} <button md-raised-button onclick="">Delete</button></span>
   </md-list-item>
+
 </md-list>

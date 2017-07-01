@@ -20,11 +20,14 @@ import { LoginComponent } from './login/login.component';
 import { UserListComponent } from './user/user-list.component';
 import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 import { UserListService } from './user/user-list.service';
+import { UserDetailComponent } from './user/user-detail.component';
+import { UserDetailService } from './user/user-detail.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UserListComponent }
+  { path: 'users', component: UserListComponent },
+  { path: 'user-detail', component: UserDetailComponent }
 
 ];
 
@@ -35,7 +38,8 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     UserListComponent,
-    TopToolbarComponent
+    TopToolbarComponent,
+    UserDetailComponent
   ],
   imports: [
     Angular2FontawesomeModule,
@@ -48,7 +52,10 @@ const appRoutes: Routes = [
     MdListModule, MdToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserListService],
+  providers: [
+    UserListService,
+    UserDetailService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
