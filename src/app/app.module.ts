@@ -20,8 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { UserListComponent } from './user/user-list.component';
 import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 import { UserListService } from './user/user-list.service';
+import { UserService } from './user/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
-import { UserDetailService } from './user/user-detail.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -54,7 +54,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserListService,
-    UserDetailService
+    UserService
   ],
   bootstrap: [AppComponent]
 })

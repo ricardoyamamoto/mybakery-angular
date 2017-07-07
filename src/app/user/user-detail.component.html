@@ -1,34 +1,34 @@
 <h3>User Detail</h3>
-<form (ngSubmit)="onSubmit()">
+<form>
   <div>
     <md-input-container>
-      <input mdInput placeholder="First Name" required>
+      <input mdInput placeholder="First Name" name="firstName" [(ngModel)]="user.firstName" required>
     </md-input-container>
     <md-input-container>
-      <input mdInput placeholder="Last Name" required>
-    </md-input-container>
-  </div>
-  <div>
-    <md-input-container>
-      <input mdInput placeholder="E-mail" required>
+      <input mdInput placeholder="Last Name" name="lastName" [(ngModel)]="user.lastName" required>
     </md-input-container>
   </div>
   <div>
     <md-input-container>
-      <input mdInput placeholder="Phone" required>
+      <input mdInput placeholder="E-mail" name="email" [(ngModel)]="user.email" required>
     </md-input-container>
   </div>
   <div>
     <md-input-container>
-      <input mdInput placeholder="User ID" required>
+      <input mdInput placeholder="Phone" name="phone"  [(ngModel)]="user.phone" required>
     </md-input-container>
   </div>
   <div>
     <md-input-container>
-      <input mdInput placeholder="Password" required>
+      <input mdInput placeholder="User ID" name="userId"  [(ngModel)]="user.userId" required>
     </md-input-container>
   </div>
   <div>
-    <button md-raised-button>Submit</button>
+    <md-input-container>
+      <input mdInput placeholder="Password" name="password"  [(ngModel)]="user.password" required>
+    </md-input-container>
+  </div>
+  <div>
+    <button md-raised-button (click)="save(user)">Submit</button>
   </div>
 </form>
