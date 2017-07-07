@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<div class="app" fxLayout="column" fxFlex [class.dark-theme]="isDarkTheme">
+<app-top-toolbar class="header"></app-top-toolbar>
+<md-sidenav-container fxFlex fxLayout="row">
+  <app-sidenav class="sidebar" fxFlex="15"></app-sidenav>
+  <div class="content" fxFlex>
+      <router-outlet></router-outlet>
+     <app-footer></app-footer>
+  </div>
+</md-sidenav-container>
+</div>
