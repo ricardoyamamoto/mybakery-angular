@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
+
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -21,23 +21,16 @@ export class UserService {
       .map(response => response.json() as User[]);
   }
 
-  addNewUser(user: User) {
-    /*const toAdd = JSON.stringify({firstName: user.firstName,
-                                  lastName: user.lastName,
-                                  email: user.email,
-                                  phone: user.phone,
-                                  userId: user.userId ,
-                                  password: user.password});*/
+  addNewUser(user: User): Observable<User> {
     const toAdd = JSON.stringify(user);
 
 
     const params = 'json=' + toAdd;
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
     console.log(params);
     return this.http
-       .post('http://localhost:3000/user', toAdd, headers)
-       .map(response => response.json());
+       .post(this.usersUrl, toAdd, {headers: this.headers})
+       .map(response => response.json() as User);
   }
 
   getUser(id: string): Observable<User> {

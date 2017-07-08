@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, BrowserXhr } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+
+import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
 
 import {Angular2FontawesomeModule} from 'angular2-fontawesome';
 import {
@@ -23,6 +25,7 @@ import { UserListService } from './user/user-list.service';
 import { UserService } from './user/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
 
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -30,6 +33,8 @@ const appRoutes: Routes = [
   { path: 'user-detail', component: UserDetailComponent }
 
 ];
+
+
 
 
 @NgModule({
@@ -54,7 +59,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserListService,
-    UserService
+    UserService,
+    CustExtBrowserXhr
   ],
   bootstrap: [AppComponent]
 })
