@@ -1,0 +1,11 @@
+.paging ul li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+
+
+.paging button {
+  background-color: #673ab7;
+  color: hsla(0,0%,100%,.87);
+}

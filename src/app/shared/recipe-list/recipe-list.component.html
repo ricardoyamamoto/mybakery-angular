@@ -1,0 +1,40 @@
+
+<div class="page-header">
+<h1>{{title}}</h1>
+  <span fxFlex></span>
+
+  <form class="searchBox" fxFlex = "30" fxLayout = "column" (submit)="search(term.value)">
+    <div class="input-group input-group-sm">
+      <md-input-container>
+        <md-icon mdPrefix style="color:mediumpurple;font-size:120%">search</md-icon>
+        <input type="search"  mdInput  #term (keyup)="search(term.value)" value="{{ terms }}" class="form-control" [formControl]="myControl" [mdAutocomplete]="auto">
+        <md-placeholder>Search Recipe</md-placeholder>
+      </md-input-container>
+
+      <md-autocomplete #auto="mdAutocomplete">
+      <md-option *ngFor="let keyword of filteredKeywords | async" [value]="keyword">
+      {{ keyword }}
+      </md-option>
+      </md-autocomplete>
+
+      <button md-raised-button type="submit">Search</button>
+    </div>
+  </form>
+</div>
+
+<div class="list-recipe">
+<md-grid-list cols="5" rowHeight="250px">
+  <md-grid-tile *ngFor="let recipe of items$ | async" >
+    <img src="assets/{{recipe.name}}.png" alt="photo of {{recipe.name}}">
+    <md-grid-tile-footer>
+      <h3 md-line>{{recipe.name}}</h3>
+      <span md-line>Category: {{recipe.category}}</span>
+        <button md-icon-button (click)="selectedRecipe = recipe" routerLink="/users">
+        <md-icon>info</md-icon>
+      </button>
+    </md-grid-tile-footer>
+  </md-grid-tile>
+</md-grid-list>
+
+<app-pagination [total]="total$ | async" [page]="page" (goTo)="goToPage($event)"></app-pagination>
+</div>
