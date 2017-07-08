@@ -33,7 +33,8 @@ export class UserDetailComponent  implements OnInit {
       .addNewUser(this.user)
       .subscribe(addedUser => {
         this.addedUser = addedUser;
-      });
+      })
+      ;
   };
 
 }
