@@ -24,6 +24,7 @@ import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 import { UserListService } from './user/user-list.service';
 import { UserService } from './user/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
+import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 
 
 const appRoutes: Routes = [
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     LoginComponent,
     UserListComponent,
     TopToolbarComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    IngredientListComponent
   ],
   imports: [
     Angular2FontawesomeModule,
