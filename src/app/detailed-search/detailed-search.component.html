@@ -11,11 +11,17 @@
   <button (click)="showResults()">
     Search
   </button>
-  <!--<div>
+  <div>
     <div *ngFor="let ingredient of ingredients | async"
          class="search-result" >
       {{ingredient.name}}
     </div>
-  </div>-->
+  </div>
   
+  <md-list>
+    <md-list-item *ngFor="let recipe of recipes | async">
+        <h4>{{recipe.title}}</h4>
+    </md-list-item>
+
+  </md-list>
 </div>

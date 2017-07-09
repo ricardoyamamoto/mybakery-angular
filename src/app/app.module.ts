@@ -26,6 +26,7 @@ import { UserService } from './user/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
 import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
+import { DetailedSearchService } from './detailed-search/detailed-search.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -61,6 +62,7 @@ const appRoutes: Routes = [
   providers: [
     UserListService,
     UserService,
+    DetailedSearchService,
     CustExtBrowserXhr
   ],
   bootstrap: [AppComponent]
