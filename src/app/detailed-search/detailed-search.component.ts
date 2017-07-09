@@ -24,9 +24,8 @@ export class DetailedSearchComponent implements OnInit {
 
   criterion: string;
   recipes: Observable<Recipe[]>;
+  //recipes: Array<any>;
   private searchTerms = new Subject<string>();
-  //foundIngredients: Array<any>;
-  //prova: string = "hello";
 
   constructor(private detailedSearchService: DetailedSearchService) { }
 
@@ -41,7 +40,7 @@ export class DetailedSearchComponent implements OnInit {
             .distinctUntilChanged()   // ignore if next search term is same as previous
             .switchMap(term => term   // switch to new observable each time the term changes
             // return the http search observable
-            ? this.detailedSearchService.readAll(term, this.criterion)
+            ? this.detailedSearchService.readSearchedRecipes(term, this.criterion)
             // or the observable of empty heroes if there was no search term
             : Observable.of<Recipe[]>([]))
             .catch(error => {

@@ -2,7 +2,7 @@
   <h3>Recipe Search</h3>
 
   <div>
-    <label>Search Recipe by:</label> 
+    <label>Search Recipe by  (works just with Title): </label> 
     <app-search-criterion-selector (select)="criterion = $event"></app-search-criterion-selector>
     {{criterion}}
   </div>
@@ -11,12 +11,12 @@
   <button (click)="showResults()">
     Search
   </button>
-  <div>
+  <!--<div>
     <div *ngFor="let ingredient of ingredients | async"
          class="search-result" >
       {{ingredient.name}}
     </div>
-  </div>
+  </div>-->
   
   <md-list>
     <md-list-item *ngFor="let recipe of recipes | async">

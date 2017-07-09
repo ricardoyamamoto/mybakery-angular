@@ -14,7 +14,7 @@ export class DetailedSearchService {
 
   constructor(private http: Http) {}
 
-  readAll(term: string, criteria: string): Observable<Recipe[]> {
+  readSearchedRecipes(term: string, criteria: string): Observable<Recipe[]> {
     
     if (criteria == "Title")
     {
@@ -22,7 +22,7 @@ export class DetailedSearchService {
     }
     // else
     // {
-    //   this.url = `http://localhost:3000/ingredientSearch/?p=${term}`;
+    //   this.url = `http://localhost:3000/recipe-search/?p=${term}`;
     // }
 
     return this.http
