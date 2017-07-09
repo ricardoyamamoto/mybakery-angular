@@ -24,18 +24,17 @@ import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 import { UserListService } from './user/user-list.service';
 import { UserService } from './user/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
-
+import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
+import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
-  { path: 'user-detail', component: UserDetailComponent }
+  { path: 'user-detail', component: UserDetailComponent },
+  { path: 'detailed-search', component: DetailedSearchComponent }
 
 ];
-
-
-
 
 @NgModule({
   declarations: [
@@ -44,7 +43,9 @@ const appRoutes: Routes = [
     LoginComponent,
     UserListComponent,
     TopToolbarComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    DetailedSearchComponent,
+    SearchCriterionSelectorComponent
   ],
   imports: [
     Angular2FontawesomeModule,

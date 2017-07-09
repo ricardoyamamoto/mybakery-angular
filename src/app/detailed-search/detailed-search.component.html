@@ -1,0 +1,21 @@
+<div>
+  <h3>Recipe Search</h3>
+
+  <div>
+    <label>Search Recipe by:</label> 
+    <app-search-criterion-selector (select)="criterion = $event"></app-search-criterion-selector>
+    {{criterion}}
+  </div>
+  <br />
+  <input #searchBox (keyup)="search(searchBox.value)" />
+  <button (click)="showResults()">
+    Search
+  </button>
+  <!--<div>
+    <div *ngFor="let ingredient of ingredients | async"
+         class="search-result" >
+      {{ingredient.name}}
+    </div>
+  </div>-->
+  
+</div>
