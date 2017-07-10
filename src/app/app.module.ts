@@ -27,6 +27,8 @@ import { UserDetailComponent } from './user/user-detail.component';
 import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
 import { DetailedSearchService } from './detailed-search/detailed-search.service';
+import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     TopToolbarComponent,
     UserDetailComponent,
     DetailedSearchComponent,
-    SearchCriterionSelectorComponent
+    SearchCriterionSelectorComponent,
+    IngredientListComponent
   ],
   imports: [
     Angular2FontawesomeModule,
