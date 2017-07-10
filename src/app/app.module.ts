@@ -24,6 +24,9 @@ import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 import { UserListService } from './user/user-list.service';
 import { UserService } from './user/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
+import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
+import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
+import { DetailedSearchService } from './detailed-search/detailed-search.service';
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 
 
@@ -31,12 +34,10 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
-  { path: 'user-detail', component: UserDetailComponent }
+  { path: 'user-detail', component: UserDetailComponent },
+  { path: 'detailed-search', component: DetailedSearchComponent }
 
 ];
-
-
-
 
 @NgModule({
   declarations: [
@@ -46,6 +47,8 @@ const appRoutes: Routes = [
     UserListComponent,
     TopToolbarComponent,
     UserDetailComponent,
+    DetailedSearchComponent,
+    SearchCriterionSelectorComponent,
     IngredientListComponent
   ],
   imports: [
@@ -62,6 +65,7 @@ const appRoutes: Routes = [
   providers: [
     UserListService,
     UserService,
+    DetailedSearchService,
     CustExtBrowserXhr
   ],
   bootstrap: [AppComponent]
