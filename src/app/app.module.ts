@@ -24,20 +24,14 @@ import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 import { UserListService } from './user/user-list.service';
 import { UserService } from './user/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
-import { IngredientComponent } from './ingredient/ingredient.component';
-import { IngredientListComponent } from './ingredient/ingredient-list/ingredient-list.component';
-import { IngredientItemComponent } from './ingredient/ingredient-list/ingredient-item.component';
-import { IngredientDetailComponent } from './ingredient/ingredient-detail/ingredient-detail.component';
-
-
+import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
-  { path: 'user-detail', component: UserDetailComponent },
-  { path: 'ingredient', component: IngredientComponent }
+  { path: 'user-detail', component: UserDetailComponent }
 
 ];
 
@@ -52,10 +46,7 @@ const appRoutes: Routes = [
     UserListComponent,
     TopToolbarComponent,
     UserDetailComponent,
-    IngredientComponent,
-    IngredientListComponent,
-    IngredientItemComponent,
-    IngredientDetailComponent,
+    IngredientListComponent
   ],
   imports: [
     Angular2FontawesomeModule,
