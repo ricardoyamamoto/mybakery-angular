@@ -2,9 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { UserService } from './user.service';
-import { User } from './user';
-import { UserRole } from './user-role';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user';
+import { UserRole } from '../models/user-role';
 
 @Component({
   selector: 'app-user-detail',

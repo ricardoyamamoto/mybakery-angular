@@ -1,0 +1,11 @@
+<div>
+<h2>Recipe List</h2>
+</div>
+<md-list>
+<md-list-item *ngFor="let recipe of recipe" isRippleEnabled="true">
+  <span md-line>
+ {{recipe.recipeName}}
+  <button md-raised-button onclick="">View</button>
+  </span>
+</md-list-item>
+</md-list>

@@ -9,36 +9,45 @@ import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
 import {Angular2FontawesomeModule} from 'angular2-fontawesome';
 import {
   MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
-  MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule
+  MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
+  MdTableModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
+import { DataSource, CdkTableModule } from '@angular/cdk';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UserListComponent } from './user/user-list.component';
-//import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
-import { UserListService } from './user/user-list.service';
-import { UserService } from './user/user.service';
+import { UserListService } from './services/user-list.service';
+import { UserService } from './services/user.service';
 import { UserDetailComponent } from './user/user-detail.component';
-//import { IngredientListComponent } from './ingredient/ingredient-list/ingredient-list.component';
+
 import { IngredientItemComponent } from './ingredient/ingredient-list/ingredient-item.component';
 import { IngredientComponent} from './ingredient/ingredient.component';
 import { IngredientDetailComponent} from './ingredient/ingredient-detail/ingredient-detail.component';
+import { IngredientListComponent } from './ingredient/ingredient-list/ingredient-list.component';
+
 import { TopToolbarComponent } from './shared/header/top-toolbar.component';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { RecipeListComponent } from './shared/recipe-list/recipe-list.component';
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { IngredientListComponent } from './shared/ingredient-list/ingredient-list.component';
+
+
 import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
 import { DetailedSearchService } from './detailed-search/detailed-search.service';
+import { AddRecipeComponent } from './recipe/add-recipe.component/add-recipe.component';
+import { AddRecipeService } from './recipe/add-recipe.component/add-recipe.service';
 
+import { RecipeIngredientComponent } from './recipe-ingredient/recipe-ingredient.component';
+import { RecipeIngredientService } from './services/recipe-ingredient.service';
 
+import { UnitService } from './services/unit.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,7 +56,9 @@ const appRoutes: Routes = [
   { path: 'user-detail', component: UserDetailComponent },
   { path: 'ingredient', component: IngredientComponent},
   { path: 'ingredients', component: IngredientListComponent },
-  { path: 'detailed-search', component: DetailedSearchComponent }
+  { path: 'detailed-search', component: DetailedSearchComponent },
+  { path: 'recipe', component: AddRecipeComponent },
+  { path: 'recipe-ingredient', component: RecipeIngredientComponent }
 
 ];
 
@@ -69,17 +80,21 @@ const appRoutes: Routes = [
     PaginationComponent,
     FooterComponent,
     DetailedSearchComponent,
-    SearchCriterionSelectorComponent
+    SearchCriterionSelectorComponent,
+    AddRecipeComponent,
+    RecipeIngredientComponent
   ],
   imports: [
     Angular2FontawesomeModule,
     BrowserAnimationsModule,
     BrowserModule,
+    CdkTableModule,
     FormsModule,
     HttpModule,
     FlexLayoutModule,
     MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
     MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
+    MdTableModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
@@ -87,6 +102,9 @@ const appRoutes: Routes = [
     UserListService,
     UserService,
     DetailedSearchService,
+    AddRecipeService,
+    RecipeIngredientService,
+    UnitService,
     CustExtBrowserXhr
   ],
   bootstrap: [AppComponent]

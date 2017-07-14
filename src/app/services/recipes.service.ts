@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Recipe} from '../classes/recipe';
+import {Recipe} from '../models/recipe';
 import { Http as HTTP} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {ListResult} from './api/list-result.interface';
@@ -7,13 +7,108 @@ import {ListResult} from './api/list-result.interface';
 @Injectable()
 export class RecipesService {
 
-  recipes: Recipe[] = [
+  recipes: Recipe[] = [];/*
     {
       name: 'cheese cake',
       category: 'dessert',
       serving: 8,
       time: 60,
+      description: 'how to make a cheese cake',
+      ingredients: [
+        {name: 'cheese', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'cheese', 'desert']
+    },
+    {
+      name: 'chocolate cake',
+      category: 'dessert',
+      serving: 8,
+      description: 'how to make a chocolate cake',
+      ingredients: [
+        {name: 'chocolate', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'chocolate', 'desert']
+    },
+    {
+      name: 'cheese cake',
+      category: 'dessert',
+      serving: 8,
+      time: 60,
+      description: 'how to make a cheese cake',
+      ingredients: [
+        {name: 'cheese', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'cheese', 'desert']
+    },
+    {
+      name: 'chocolate cake',
+      category: 'dessert',
+      serving: 8,
+      time: 60,
       author: 'Gerry',
+      description: 'how to make a chocolate cake',
+      ingredients: [
+        {name: 'chocolate', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'chocolate', 'desert']
+    },
+    {
+      name: 'cheese cake',
+      category: 'dessert',
+      serving: 8,
+      time: 60,
+      description: 'how to make a cheese cake',
+      ingredients: [
+        {name: 'cheese', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'cheese', 'desert']
+    },
+    {
+      name: 'chocolate cake',
+      category: 'dessert',
+      serving: 8,
+      time: 60,
+      description: 'how to make a chocolate cake',
+      ingredients: [
+        {name: 'chocolate', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'chocolate', 'desert']
+    },
+    {
+      name: 'cheese cake',
+      category: 'dessert',
+      serving: 8,
+      time: 60,
+      description: 'how to make a cheese cake',
+      ingredients: [
+        {name: 'cheese', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'cheese', 'desert']
+    },
+    {
+      name: 'chocolate cake',
+      category: 'dessert',
+      serving: 8,
+      time: 60,
+      description: 'how to make a chocolate cake',
+      ingredients: [
+        {name: 'chocolate', quantity: 40, unit: 'g'},
+        {name: 'egg', quantity: 4, unit: ''}
+      ],
+      keywords: ['cake', 'chocolate', 'desert']
+    },
+    {
+      name: 'cheese cake',
+      category: 'dessert',
+      serving: 8,
+      time: 60,
       description: 'how to make a cheese cake',
       ingredients: [
         {name: 'cheese', quantity: 40, unit: 'g'},
@@ -138,111 +233,7 @@ export class RecipesService {
       ],
       keywords: ['cake', 'chocolate', 'desert']
     },
-    {
-      name: 'cheese cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a cheese cake',
-      ingredients: [
-        {name: 'cheese', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'cheese', 'desert']
-    },
-    {
-      name: 'chocolate cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a chocolate cake',
-      ingredients: [
-        {name: 'chocolate', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'chocolate', 'desert']
-    },
-    {
-      name: 'cheese cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a cheese cake',
-      ingredients: [
-        {name: 'cheese', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'cheese', 'desert']
-    },
-    {
-      name: 'chocolate cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a chocolate cake',
-      ingredients: [
-        {name: 'chocolate', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'chocolate', 'desert']
-    },
-    {
-      name: 'cheese cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a cheese cake',
-      ingredients: [
-        {name: 'cheese', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'cheese', 'desert']
-    },
-    {
-      name: 'chocolate cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a chocolate cake',
-      ingredients: [
-        {name: 'chocolate', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'chocolate', 'desert']
-    },
-    {
-      name: 'cheese cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a cheese cake',
-      ingredients: [
-        {name: 'cheese', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'cheese', 'desert']
-    },
-    {
-      name: 'chocolate cake',
-      category: 'dessert',
-      serving: 8,
-      time: 60,
-      author: 'Gerry',
-      description: 'how to make a chocolate cake',
-      ingredients: [
-        {name: 'chocolate', quantity: 40, unit: 'g'},
-        {name: 'egg', quantity: 4, unit: ''}
-      ],
-      keywords: ['cake', 'chocolate', 'desert']
-    },
-  ];
+  ];*/
 
   // getRecipes(): Promise<Recipe[]> {
   //   return Promise.resolve(this.recipes);

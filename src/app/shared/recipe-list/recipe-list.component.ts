@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RecipesService} from '../../services/recipes.service';
-import {Recipe} from '../../classes/recipe';
+import {Recipe} from '../../models/recipe';
 import {Observable} from 'rxjs/Rx';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/distinctUntilChanged';

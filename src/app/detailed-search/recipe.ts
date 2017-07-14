@@ -1,5 +1,5 @@
 import { Category } from './category';
-import { User } from '../user/user';
+import { User } from '../models/user';
 import { RecipeIngredient } from './recipe-ingredient';
 
 export class Recipe {

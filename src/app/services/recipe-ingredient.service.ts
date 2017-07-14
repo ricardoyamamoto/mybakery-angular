@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 import { Ingredient } from '../models/ingredient';
 
-
 @Injectable()
-export class IngredientService {
+export class RecipeIngredientService {
 
   constructor(private http: Http) {}
 

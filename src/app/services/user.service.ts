@@ -5,7 +5,7 @@ import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { User } from './user';
+import { User } from '../models/user';
 
 @Injectable()
 export class UserService {
