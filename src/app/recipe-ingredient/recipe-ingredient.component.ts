@@ -14,7 +14,7 @@ import { UnitService } from '../services/unit.service';
 
 import { Ingredient } from '../models/ingredient';
 import { Observable} from 'rxjs/Observable';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 
 
@@ -31,20 +31,38 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class RecipeIngredientComponent implements OnInit {
 
+  /** Variables used to store the **/
   ingredients: Array<Ingredient>;
   units: Array<Unit>;
+
+  /** The following variables store the values provided by the user to inser the recipe ingredient **/
   @Input() quantity: number;
   @Input() selectedUnit: Unit;
   @Input() selectedIngredient: Ingredient;
 
-
   exampleDatabase = new ExampleDatabase();
-  recipeIngredients: Array<RecipeIngredient>;
+
   dataSource: ExampleDataSource | null;
-  displayedColumns = ['ingredientName', 'quantity', 'unit', 'delete'];
+
+  displayedColumns = ['ingredientName', 'quantity', 'unit', 'edit', 'delete'];
 
   filteredIngredients: Observable<Ingredient[]>;
+
+
   myControl = new FormControl();
+
+  ingredientFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  quantityFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  unitFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
   constructor(
     private recipeIngredientService: RecipeIngredientService,
     private unitService: UnitService,
@@ -77,16 +95,29 @@ export class RecipeIngredientComponent implements OnInit {
     return ingredient ? ingredient.name : ingredient;
   }
 
+  /** Adds a new ingredient to the recipe or updates existing one **/
   addIngredient(): void {
     const recipeIngredient = new RecipeIngredient(
       this.selectedIngredient,
       this.quantity,
       this.selectedUnit
     );
-
     this.exampleDatabase.addIngredient(recipeIngredient);
+
+    /** clear the fields after adding a new ingredient **/
+    this.selectedIngredient = null;
+    this.quantity = null;
+    this.selectedUnit = null;
   }
 
+  /** Allows user to edit a selected ingredient**/
+  editIngredient(recipeIngredient: RecipeIngredient) {
+    this.selectedIngredient = recipeIngredient.ingredient;
+    this.quantity = recipeIngredient.quantity;
+    this.selectedUnit = recipeIngredient.unit;
+  }
+
+  /** Removes ingredient from the recipe **/
   removeIngredient(recipeIngredient: RecipeIngredient): void {
     this.exampleDatabase.deleteIngredient(recipeIngredient);
   }
@@ -99,29 +130,36 @@ export class ExampleDatabase {
   dataChange: BehaviorSubject<RecipeIngredient[]> = new BehaviorSubject<RecipeIngredient[]>([]);
   get data(): RecipeIngredient[] { return this.dataChange.value; }
 
-  /** Adds a new user to the database. */
+  /** Adds a new recipe ingredient to the in memory database. */
   addIngredient(recipeIngredient: RecipeIngredient) {
     const copiedData = this.data.slice();
+    var recipeIndex: number;
+    recipeIndex = this.findIngredient(copiedData, recipeIngredient.ingredient);
+    if (recipeIndex >= 0) {
+      copiedData.splice(recipeIndex, 1);
+    }
     copiedData.push(recipeIngredient);
     this.dataChange.next(copiedData);
   }
 
-  deleteIngredient(recipeIngredient: RecipeIngredient){
+  /** Checks whether the provided ingredient already exists in the list **/
+  findIngredient(data: RecipeIngredient[], ingredient: Ingredient): number {
+    let i;
+    for (i = 0; i < data.length; i++) {
+      if (data[i].ingredient === ingredient) {
+        return i;
+      }
+    }
+    return - 1;
+  }
+
+  /** Removes a recipe ingredient from the in memory database. **/
+  deleteIngredient(recipeIngredient: RecipeIngredient) {
     const copiedData = this.data.slice();
-    copiedData.filter(function (val) {
-      return val['ingredient'] !== recipeIngredient.ingredient;
-    });
-    console.log(copiedData);
+    copiedData.splice(copiedData.indexOf(recipeIngredient), 1);
     this.dataChange.next(copiedData);
   }
 
-
-
-  /** Builds and returns a new User. */
-  private insertIngredient() {
-
-
-  }
 }
 
 /**
