@@ -28,6 +28,14 @@ export class CategoryService {
       .map(response => response.json() as Category);
   }
 
+  findByName(name: string): Observable<Category> {
+    const url = `${this.categoryUrl}/?name=${name}`;
+    console.log(url);
+    return this.http
+      .get(url)
+      .map(response => response.json() as Category);
+  }
+
   getCategory(id: string): Observable<Category> {
     const url = '${this.categoryUrl}/${id}';
     return this.http
