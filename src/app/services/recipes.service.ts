@@ -243,7 +243,7 @@ export class RecipesService {
 
   list(search: string = null, page: number = 1, limit: number = 10): Observable<ListResult<Recipe>> {
     const recipeResult = this.recipes.filter(function(recipe: Recipe) {
-      return (search) ? recipe.name.toLowerCase().indexOf(search) !== -1 : true;
+      return (search) ? recipe.title.toLowerCase().indexOf(search) !== -1 : true;
     });
 
     const recipeResultPage = recipeResult.slice((page - 1) * limit, page * limit);

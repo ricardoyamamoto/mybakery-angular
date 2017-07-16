@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DetailedSearchService } from './detailed-search.service';
-import { Recipe } from './recipe';
+import { DetailedSearchService } from '../services/detailed-search.service';
+import { Recipe } from '../models/recipe';
 
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';

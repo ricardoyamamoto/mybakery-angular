@@ -40,7 +40,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
-import { DetailedSearchService } from './detailed-search/detailed-search.service';
+import { DetailedSearchService } from './services/detailed-search.service';
 import { AddRecipeComponent } from './recipe/add-recipe.component/add-recipe.component';
 import { AddRecipeService } from './services/recipe.service';
 
