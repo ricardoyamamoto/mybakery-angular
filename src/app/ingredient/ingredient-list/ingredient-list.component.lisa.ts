@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IngredientListService } from '../../services/ingredient-list.service';
+import { IngredientSearchService } from '../../services/ingredient-search.service';
 import { Ingredient } from '../../models/ingredient';
 
 @Component({
@@ -15,18 +16,30 @@ export class IngredientListLisaComponent implements OnInit {    //////////// cha
     /** Variables used to store the ingredients**/
     ingredients: Array<Ingredient>;
 
-    //displayedColumns = ['ingredientName', 'defaultUnit', 'edit'];
-
-
     constructor(
         private ingredientListService: IngredientListService,
+        private ingredientSearchService: IngredientSearchService,
         private router: Router
     ) {}
 
     ngOnInit() {
         this.ingredientListService.readAll().subscribe(ingredients => {
         this.ingredients = ingredients;
-    });
+        });
+    }
+
+    showSearchResults(term : string): void {
+        this.ingredients = [];
+        this.ingredientSearchService.readSearchedIngredients(term).subscribe(ingredients => {
+            this.ingredients = ingredients;
+        });
+    }
+
+    resetSearchResults(): void {
+        this.ingredients = [];
+        this.ingredientSearchService.readSearchedIngredients("").subscribe(ingredients => {
+            this.ingredients = ingredients;
+        });
     }
 }
 

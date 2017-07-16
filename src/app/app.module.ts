@@ -32,6 +32,8 @@ import { IngredientDetailComponent} from './ingredient/ingredient-detail/ingredi
 import { IngredientListComponent } from './ingredient/ingredient-list/ingredient-list.component';
 import { IngredientListLisaComponent } from './ingredient/ingredient-list/ingredient-list.component.lisa';  //////
 import { IngredientListService } from './services/ingredient-list.service';
+import { IngredientSearchService } from './services/ingredient-search.service';
+
 
 import { TopToolbarComponent } from './shared/header/top-toolbar.component';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
@@ -108,6 +110,7 @@ const appRoutes: Routes = [
     DetailedSearchService,
     AddRecipeService,
     IngredientListService,
+    IngredientSearchService,
     RecipeIngredientService,
     UnitService,
     CustExtBrowserXhr
