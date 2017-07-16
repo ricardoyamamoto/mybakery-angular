@@ -10,7 +10,7 @@ import {Angular2FontawesomeModule} from 'angular2-fontawesome';
 import {
   MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
   MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
-  MdTableModule
+  MdTableModule, MdSelectModule, MdChipsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
@@ -42,12 +42,15 @@ import { DetailedSearchComponent } from './detailed-search/detailed-search.compo
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
 import { DetailedSearchService } from './detailed-search/detailed-search.service';
 import { AddRecipeComponent } from './recipe/add-recipe.component/add-recipe.component';
-import { AddRecipeService } from './recipe/add-recipe.component/add-recipe.service';
+import { AddRecipeService } from './services/recipe.service';
 
 import { RecipeIngredientComponent } from './recipe-ingredient/recipe-ingredient.component';
 import { RecipeIngredientService } from './services/recipe-ingredient.service';
 
 import { UnitService } from './services/unit.service';
+import { CategoryComponent } from './category/category.component';
+import { CategoryService } from './services/category.service';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -58,7 +61,8 @@ const appRoutes: Routes = [
   { path: 'ingredients', component: IngredientListComponent },
   { path: 'detailed-search', component: DetailedSearchComponent },
   { path: 'recipe', component: AddRecipeComponent },
-  { path: 'recipe-ingredient', component: RecipeIngredientComponent }
+  { path: 'recipe-ingredient', component: RecipeIngredientComponent },
+  { path: 'category', component: CategoryComponent}
 
 ];
 
@@ -82,7 +86,8 @@ const appRoutes: Routes = [
     DetailedSearchComponent,
     SearchCriterionSelectorComponent,
     AddRecipeComponent,
-    RecipeIngredientComponent
+    RecipeIngredientComponent,
+    CategoryComponent
   ],
   imports: [
     Angular2FontawesomeModule,
@@ -94,7 +99,7 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
     MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
-    MdTableModule,
+    MdTableModule, MdSelectModule, MdChipsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
@@ -105,6 +110,7 @@ const appRoutes: Routes = [
     AddRecipeService,
     RecipeIngredientService,
     UnitService,
+    CategoryService,
     CustExtBrowserXhr
   ],
   bootstrap: [AppComponent]

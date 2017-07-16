@@ -1,0 +1,14 @@
+<div>
+  <md-input-container>
+    <input mdInput placeholder="Category" name="categoryInput" [(ngModel)]="category.name" required>
+  </md-input-container>
+  <button md-raised-button (click)="save()">Add Category</button>
+  <md-chip-list>
+    <md-chip *ngFor="let category of categories" isRippleEnabled="true">
+      {{category.name}}
+    </md-chip>
+
+  </md-chip-list>
+
+
+</div>

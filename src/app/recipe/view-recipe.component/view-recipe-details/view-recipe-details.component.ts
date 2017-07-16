@@ -1,6 +1,8 @@
 import { ViewRecipe } from './../viewrecipe';
 import { Component, OnInit } from '@angular/core';
-import { RecipeDetailService } from './RecipeDetail.service';
+import { RecipeDetailService } from './recipe-detail.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -10,13 +12,28 @@ import { RecipeDetailService } from './RecipeDetail.service';
 })
 export class ViewRecipeDetailsComponent implements OnInit {
 
-  recipe: Array<any>;
-
-  constructor(private recipeDetailService: RecipeDetailService) { }
+   recipe: Array<any>;
+   // recipe = {};
+  constructor(private route: ActivatedRoute, private router: Router, private recipeDetailService: RecipeDetailService) { }
 
   ngOnInit() {
-    this.recipeDetailService.read().subscribe(recipe =>{
-      this.recipe = recipe;
-    })
+  this.getRecipeDetails(this.route.snapshot.params['_id']);
   }
+
+   getRecipeDetails(id) {
+       this.recipeDetailService.getRecipe(id).subscribe(recipe => {
+         this.recipe = recipe;
+       });
+      }
+
+
+  getRecipe(id) {
+    this.recipeDetailService.getRecipe(id).subscribe((res) => {
+      this.recipe = res;
+      console.log(this.recipe);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
 }

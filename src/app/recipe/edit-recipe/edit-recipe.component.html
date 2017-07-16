@@ -1,0 +1,44 @@
+
+
+
+
+
+<form class="example-form" (ngSubmit)="updateRecipe(recipe._id)" #recipeForm="ngForm">
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder={{recipeName}} name="recipeName" [(ngModel)]="recipe.recipeName" required >
+  </md-input-container>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder={{category}} name="category" [(ngModel)]="recipe.category" required>
+    </md-input-container></td></tr>
+    <tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder={{numberOfServings}} name="numberOfServings" [(ngModel)]="recipe.numberOfServings" required>
+    </md-input-container></td>
+  </tr></table>
+
+   <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder={{preparationTime}} name="preparationTime" [(ngModel)]="recipe.preparationTime" required>
+    </md-input-container></td>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder={{cookingTime}} name="cookingTime" [(ngModel)]="recipe.cookingTime" required>
+    </md-input-container></td>
+    </tr>
+    <tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder={{author}} name="author" [(ngModel)]="recipe.author" required>
+
+    </md-input-container></td>
+  </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+      <button type="submit" [disabled]="!recipeForm.form.valid">Update </button>
+      </td>
+    </tr>
+  </table>
+
+</form>

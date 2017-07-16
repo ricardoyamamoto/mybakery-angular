@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
 // Observable class extensions
@@ -16,12 +16,11 @@ import { Ingredient } from '../models/ingredient';
 import { Observable} from 'rxjs/Observable';
 import { FormControl, Validators } from '@angular/forms';
 
-
+import { RecipeIngredientDatabase, RecipeIngredientDataSource } from './recipe-ingredient.datasource';
 
 import { Unit } from '../models/unit';
 import { RecipeIngredient } from '../models/recipe-ingredient';
-import { DataSource } from '@angular/cdk';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 @Component({
   selector: 'app-recipe-ingredient',
@@ -39,10 +38,11 @@ export class RecipeIngredientComponent implements OnInit {
   @Input() quantity: number;
   @Input() selectedUnit: Unit;
   @Input() selectedIngredient: Ingredient;
+  @Output() notify: EventEmitter<RecipeIngredient[]> = new EventEmitter<RecipeIngredient[]>();
 
-  exampleDatabase = new ExampleDatabase();
+  recipeIngredientDatabase = new RecipeIngredientDatabase();
 
-  dataSource: ExampleDataSource | null;
+  dataSource: RecipeIngredientDataSource | null;
 
   displayedColumns = ['ingredientName', 'quantity', 'unit', 'edit', 'delete'];
 
@@ -78,7 +78,7 @@ export class RecipeIngredientComponent implements OnInit {
     this.unitService.readAll().subscribe(units => {
       this.units = units;
     });
-    this.dataSource = new ExampleDataSource(this.exampleDatabase);
+    this.dataSource = new RecipeIngredientDataSource(this.recipeIngredientDatabase);
     this.filteredIngredients = this.myControl.valueChanges
       .startWith(null)
       .map(ingredient => ingredient  && typeof ingredient === 'object' ? ingredient.name : ingredient)
@@ -102,12 +102,14 @@ export class RecipeIngredientComponent implements OnInit {
       this.quantity,
       this.selectedUnit
     );
-    this.exampleDatabase.addIngredient(recipeIngredient);
+    this.recipeIngredientDatabase.addIngredient(recipeIngredient);
 
     /** clear the fields after adding a new ingredient **/
     this.selectedIngredient = null;
     this.quantity = null;
     this.selectedUnit = null;
+
+    this.notify.emit(this.recipeIngredientDatabase.data);
   }
 
   /** Allows user to edit a selected ingredient**/
@@ -115,70 +117,19 @@ export class RecipeIngredientComponent implements OnInit {
     this.selectedIngredient = recipeIngredient.ingredient;
     this.quantity = recipeIngredient.quantity;
     this.selectedUnit = recipeIngredient.unit;
+    this.notify.emit(this.recipeIngredientDatabase.data);
   }
 
   /** Removes ingredient from the recipe **/
   removeIngredient(recipeIngredient: RecipeIngredient): void {
-    this.exampleDatabase.deleteIngredient(recipeIngredient);
+    this.recipeIngredientDatabase.deleteIngredient(recipeIngredient);
+    this.notify.emit(this.recipeIngredientDatabase.data);
   }
+
+
+
 
 }
 
-/** An example database that the data source uses to retrieve data for the table. */
-export class ExampleDatabase {
-  /** Stream that emits whenever the data has been modified. */
-  dataChange: BehaviorSubject<RecipeIngredient[]> = new BehaviorSubject<RecipeIngredient[]>([]);
-  get data(): RecipeIngredient[] { return this.dataChange.value; }
 
-  /** Adds a new recipe ingredient to the in memory database. */
-  addIngredient(recipeIngredient: RecipeIngredient) {
-    const copiedData = this.data.slice();
-    var recipeIndex: number;
-    recipeIndex = this.findIngredient(copiedData, recipeIngredient.ingredient);
-    if (recipeIndex >= 0) {
-      copiedData.splice(recipeIndex, 1);
-    }
-    copiedData.push(recipeIngredient);
-    this.dataChange.next(copiedData);
-  }
-
-  /** Checks whether the provided ingredient already exists in the list **/
-  findIngredient(data: RecipeIngredient[], ingredient: Ingredient): number {
-    let i;
-    for (i = 0; i < data.length; i++) {
-      if (data[i].ingredient === ingredient) {
-        return i;
-      }
-    }
-    return - 1;
-  }
-
-  /** Removes a recipe ingredient from the in memory database. **/
-  deleteIngredient(recipeIngredient: RecipeIngredient) {
-    const copiedData = this.data.slice();
-    copiedData.splice(copiedData.indexOf(recipeIngredient), 1);
-    this.dataChange.next(copiedData);
-  }
-
-}
-
-/**
- * Data source to provide what data should be rendered in the table. Note that the data source
- * can retrieve its data in any way. In this case, the data source is provided a reference
- * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
- * the underlying data. Instead, it only needs to take the data and send the table exactly what
- * should be rendered.
- */
-export class ExampleDataSource extends DataSource<any> {
-  constructor(private _exampleDatabase: ExampleDatabase) {
-    super();
-  }
-
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<RecipeIngredient[]> {
-    return this._exampleDatabase.dataChange;
-  }
-
-  disconnect() {}
-}
 

@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class ViewRecipeComponent  implements OnInit {
 
    recipe: Array<any>;
-
+  recipeNew: { };
+  viewRecipe: ViewRecipe;
    constructor(
      private viewRecipeService: ViewRecipeService) {}
 
@@ -19,8 +20,8 @@ export class ViewRecipeComponent  implements OnInit {
        this.viewRecipeService.readAll().subscribe(recipe => {
          this.recipe = recipe;
        });
+     };
 
-      }
      }
 
 

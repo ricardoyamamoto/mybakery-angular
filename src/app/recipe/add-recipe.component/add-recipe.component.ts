@@ -1,9 +1,16 @@
-import { AddRecipe } from './addrecipe';
+
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import {AddRecipeService} from './add-recipe.service';
+import {AddRecipeService} from '../../services/recipe.service';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
+
+import { Recipe } from '../../models/recipe';
+import { RecipeIngredient } from '../../models/recipe-ingredient';
+import { Category } from '../../models/category';
+import { JsonRecipe } from './json-recipe';
+import { JsonRecipeIngredient } from './json-recipe-ingredient';
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -13,29 +20,32 @@ export class AddRecipeComponent implements OnInit {
 
   header = 'Add-Recipe';
   toolbarTitle = 'myBakery';
-  recipeName = 'Recipe Name';
+  title = 'Recipe Title';
   category = 'Category';
   author = 'Author';
   numberOfServings = 'Number of Servings';
-  cookingTime = 'Cooking Time';
+  description = 'Description';
   preparationTime = 'Preparation Time';
   submit = 'Submit';
 
-  @Input() addRecipe: AddRecipe;
+  @Input() addRecipe: JsonRecipe;
+  categories: string[];
+  recipeIngredients: Array<JsonRecipeIngredient>;
 
-  addedRecipe: AddRecipe;
+  addedRecipe: Recipe;
 
   constructor(
     private addRecipeService: AddRecipeService,
     private route: ActivatedRoute,
     private location: Location
   ) {    }
+
   ngOnInit() {
-    this.addRecipe = <AddRecipe> {};
+    this.addRecipe = <JsonRecipe> {};
   };
 
   save(): void {
-
+    this.addRecipe.lastModified = new Date().toString();
     this.addRecipeService
       .addNewRecipe(this.addRecipe)
       .subscribe(addedRecipe => {
@@ -43,5 +53,26 @@ export class AddRecipeComponent implements OnInit {
       });
       console.log('Done');
   };
+
+
+  onNotifyCategories(categories: Category[]): void {
+    this.addRecipe.category = [];
+    for (let i = 0; i < categories.length; i++) {
+      this.addRecipe.category.push(categories[i]._id);
+    }
+  }
+
+  onNotifyIngredients(recipeIngredients: RecipeIngredient[]): void {
+    this.addRecipe.recipeIngredients = [];
+    for (let i = 0; i < recipeIngredients.length; i++) {
+      var recipeIngredient: JsonRecipeIngredient;
+      recipeIngredient = new JsonRecipeIngredient(
+        recipeIngredients[i].ingredient._id,
+        recipeIngredients[i].quantity,
+        recipeIngredients[i].unit._id
+      );
+      this.addRecipe.recipeIngredients.push(recipeIngredient);
+    }
+  }
 
 }

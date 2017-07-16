@@ -1,28 +1,24 @@
-<h3>Recipe Ingredients</h3>
+<h4>Recipe Ingredients</h4>
   <!--md-input-container>
     <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
   </md-input-container>
   <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
-    <md-option *ngFor="let ingredient of filteredIngredients | async" [value]="ingredient.name">
+    <md-option *ngFor="let ingredient of filteredIngredients | async" [value]="ingredient">
       {{ ingredient.name }}
     </md-option>
   </md-autocomplete>
-
-
-  <md-select placeholder="Igredient" name="ingredient">
-    <md-option *ngFor="let ingredient of ingredients" [value]="ingredient">
-      {{ ingredient.name }}
-    </md-option>
-  </md-select-->
+<md-select placeholder="Select value" [ngModel]="selectedValue">
+  <md-option *ngFor="let val of values" [value]="val">value: {{ val }}</md-option>
+</md-select-->
 
 <form #f="ngForm">
   <div>
   <span>
     <label>Ingredient: </label>
-      <select name="ingredient" placeholder="Igredient" [(ngModel)]="selectedIngredient"
-              [formControl]="ingredientFormControl" #formIngredient required>
+    <select name="ingredient" placeholder="Igredient" [(ngModel)]="selectedIngredient"
+            [formControl]="ingredientFormControl" #formIngredient required >
       <option  *ngFor="let ingredient of ingredients"
-              [ngValue]="ingredient" ngDefaultControl>
+               [ngValue]="ingredient">
         {{ ingredient.name }}
       </option>
     </select>

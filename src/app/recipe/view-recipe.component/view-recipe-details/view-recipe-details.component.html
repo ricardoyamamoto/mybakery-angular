@@ -1,8 +1,4 @@
-<p>
-  view-recipe-details works!
-</p>
-<md-input-container>
-  <span md-line>
+<div *ngFor="let recipe of recipe | async">
+{{recipe._id}}
 
-  </span>
-</md-input-container>
+</div>

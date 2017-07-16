@@ -5,7 +5,8 @@
 <md-list-item *ngFor="let recipe of recipe" isRippleEnabled="true">
   <span md-line>
  {{recipe.recipeName}}
-  <button md-raised-button onclick="">View</button>
+  <button md-raised-button [routerLink]="['/recipe-detail',recipe._id]">View</button>
+  <button md-raised-button  [routerLink]="['/edit-recipe' ,recipe._id]">Edit</button>
   </span>
 </md-list-item>
 </md-list>

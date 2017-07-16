@@ -17,19 +17,20 @@ export class UserService {
 
   read(): Observable<User[]> {
     return this.http
-      .get('http://localhost:3000/user')
+      .get(this.usersUrl)
+      .map(response => response.json() as User[]);
+  }
+
+  readAll(): Observable<User[]> {
+    return this.http
+      .get(this.usersUrl)
       .map(response => response.json() as User[]);
   }
 
   addNewUser(user: User): Observable<User> {
-    const toAdd = JSON.stringify(user);
-
-
-    const params = 'json=' + toAdd;
-
-    console.log(params);
+    const userJson = JSON.stringify(user);
     return this.http
-       .post(this.usersUrl, toAdd, {headers: this.headers})
+       .post(this.usersUrl, userJson, {headers: this.headers})
        .map(response => response.json() as User);
   }
 
