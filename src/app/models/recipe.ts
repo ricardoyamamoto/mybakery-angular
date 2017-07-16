@@ -13,4 +13,5 @@ export class Recipe {
   recipeIngredients: RecipeIngredient[];
   price: number;
   description: string;
+  lastModified: string;
 }
