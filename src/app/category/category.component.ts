@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
+
 
 @Component({
   selector: 'app-category',
@@ -17,23 +17,20 @@ export class CategoryComponent implements OnInit {
   @Output() notify: EventEmitter<Category[]> = new EventEmitter<Category[]>();
 
   constructor(
-    private categoryService: CategoryService,
-    private router: Router
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit() {
     this.category = <Category>{};
     this.categories = new Array<Category>();
-    /*this.categoryService.readAll().subscribe(categories => {
-      this.categories = categories;
-    });*/
   }
   /** The save method checks whether the category has already been selected.
    *  If not, then it checks whether it exists in the database.
    *  If it does, then it adds the existing category to the array.
    *  Otherwise, it inserts the category in the database and then adds it to the array. **/
   save(): void {
-    if (this.alreadySelected(this.category)) {
+    if (this.alreadyAdded(this.category.name)) {
+      this.category.name = '';
       return;
     }
     this.categoryService
@@ -42,17 +39,19 @@ export class CategoryComponent implements OnInit {
         if (existingCategory[0] !== undefined) {
           this.categories.push(existingCategory[0]);
           this.notify.emit(this.categories);
+          this.category.name = '';
         } else {
           this.addNewCategory();
+          this.category.name = '';
         }
       });
   }
 
   /** Checks whether a category has already been selected by the user **/
-  alreadySelected(newElement: Category): boolean {
+  alreadyAdded(name: string): boolean {
     let i;
     for (i = 0; i < this.categories.length; i++) {
-      if (this.categories[i].name === newElement.name) {
+      if (this.categories[i].name === name) {
         return true;
       }
     }
@@ -68,6 +67,8 @@ export class CategoryComponent implements OnInit {
         this.notify.emit(this.categories);
       });
   }
+
+
 
 
 }

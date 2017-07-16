@@ -1,14 +1,20 @@
 <div>
-  <md-input-container>
-    <input mdInput placeholder="Category" name="categoryInput" [(ngModel)]="category.name" required>
-  </md-input-container>
-  <button md-raised-button (click)="save()">Add Category</button>
+  <form #categoryForm="ngForm">
+    <md-input-container>
+      <input mdInput placeholder="Category" name="categoryInput" [(ngModel)]="category.name"
+             required #name="ngModel">
+      <md-error *ngIf="name.errors && (name.dirty || name.touched || !name.pristine)">
+        <div [hidden]="!name.errors.required">
+          Name is required
+        </div>
+      </md-error>
+    </md-input-container>
+
+    <button md-raised-button (click)="save()" [disabled]="!categoryForm.form.valid">Add Category</button>
+  </form>
   <md-chip-list>
     <md-chip *ngFor="let category of categories" isRippleEnabled="true">
       {{category.name}}
     </md-chip>
-
   </md-chip-list>
-
-
 </div>
