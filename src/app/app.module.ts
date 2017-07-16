@@ -41,6 +41,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
 import { DetailedSearchService } from './services/detailed-search.service';
+import { RecipeListService } from './services/recipe-list.service';
 import { AddRecipeComponent } from './recipe/add-recipe.component/add-recipe.component';
 import { AddRecipeService } from './services/recipe.service';
 
@@ -107,6 +108,7 @@ const appRoutes: Routes = [
     UserListService,
     UserService,
     DetailedSearchService,
+    RecipeListService,
     AddRecipeService,
     RecipeIngredientService,
     UnitService,
