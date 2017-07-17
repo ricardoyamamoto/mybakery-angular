@@ -31,4 +31,23 @@ export class DetailedSearchComponent implements OnInit {
     });
   }
 
+  showSearchResults(term : string): void {
+    if (term != "")
+    {
+      this.recipes = [];
+      this.detailedSearchService.readSearchedRecipes(term, this.criterion).subscribe(recipes => {
+          this.recipes = recipes;
+      });
+
+      //this.detailedSearchService.findCategoryIds(term); // JUST TO TEST THIS METHOD
+    }   
+  }
+
+  resetSearchResults(): void {
+      this.recipes = [];
+      this.ngOnInit();
+  }
+
+
+
 }
