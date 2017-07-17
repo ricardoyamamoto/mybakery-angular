@@ -3,7 +3,7 @@ mat-grid-list {
 }
 
 .list-recipe {
-  margin: 20px 70px 50px 70px;
+  margin: 20px 5% 50px 5%;
 }
 
 h1 {
@@ -18,9 +18,15 @@ h1 {
   background: #673ab7;
   align-items: center;
   justify-content: center;
+  margin-top: 0px;
 }
 
 .page-header button {
   color: hsla(0,0%,100%,.87);
   background-color:mediumpurple;
+}
+
+.searchIcon {
+  color: mediumpurple;
+  font-size: large;
 }

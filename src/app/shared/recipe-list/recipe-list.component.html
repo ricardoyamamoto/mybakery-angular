@@ -6,7 +6,7 @@
   <form class="searchBox" fxFlex = "30" fxLayout = "column" (submit)="search(term.value)">
     <div class="input-group input-group-sm">
       <md-input-container>
-        <md-icon mdPrefix style="color:mediumpurple;font-size:120%">search</md-icon>
+        <md-icon mdPrefix class="searchIcon">search</md-icon>
         <input type="search"  mdInput  #term (keyup)="search(term.value)" value="{{ terms }}" class="form-control" [formControl]="myControl" [mdAutocomplete]="auto">
         <md-placeholder>Search Recipe</md-placeholder>
       </md-input-container>
