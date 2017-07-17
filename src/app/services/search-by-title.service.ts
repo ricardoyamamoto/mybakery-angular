@@ -16,7 +16,7 @@ export class SearchByTitleService {
 
   readSearchedRecipes(term: string): Observable<Recipe[]> {
 
-    this.url = `http://localhost:3000/recipe-search/?q=${term}`;
+    this.url = `http://localhost:3000/search-by-title/?q=${term}`;
 
     return this.http
         .get(this.url)
