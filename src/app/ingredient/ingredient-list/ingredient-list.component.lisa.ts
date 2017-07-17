@@ -29,17 +29,18 @@ export class IngredientListLisaComponent implements OnInit {    //////////// cha
     }
 
     showSearchResults(term : string): void {
-        this.ingredients = [];
-        this.ingredientSearchService.readSearchedIngredients(term).subscribe(ingredients => {
-            this.ingredients = ingredients;
-        });
+        if (term != "")
+        {
+            this.ingredients = [];
+            this.ingredientSearchService.readSearchedIngredients(term).subscribe(ingredients => {
+                this.ingredients = ingredients;
+            });
+        }
     }
 
     resetSearchResults(): void {
         this.ingredients = [];
-        this.ingredientSearchService.readSearchedIngredients("").subscribe(ingredients => {
-            this.ingredients = ingredients;
-        });
+        this.ngOnInit();
     }
 }
 
