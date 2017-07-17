@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { RecipeListService } from '../services/recipe-list.service';
-import { DetailedSearchService } from '../services/detailed-search.service';
+import { SearchByTitleService } from '../services/search-by-title.service';
 import { SearchByCategoryService } from '../services/search-by-category.service';
 import { CategoryService } from '../services/category.service';
 
@@ -13,7 +13,7 @@ import { Category } from '../models/category';
   selector: 'app-detailed-search',
   templateUrl: './detailed-search.component.html',
   styleUrls: ['./detailed-search.component.css'], 
-  providers: [DetailedSearchService]
+  providers: [SearchByTitleService]
 })
 export class DetailedSearchComponent implements OnInit {
   
@@ -24,7 +24,7 @@ export class DetailedSearchComponent implements OnInit {
 
   constructor(
     private recipeListService: RecipeListService,
-    private detailedSearchService: DetailedSearchService,
+    private searchByTitleService: SearchByTitleService,
     private searchByCategoryService: SearchByCategoryService,
     private categoryService: CategoryService,
     private router: Router
@@ -67,7 +67,7 @@ export class DetailedSearchComponent implements OnInit {
     whose title corresponds to 'term' **/
   findByTitle(term: string): void {
     this.recipes = [];
-    this.detailedSearchService.readSearchedRecipes(term).subscribe(recipes => {
+    this.searchByTitleService.readSearchedRecipes(term).subscribe(recipes => {
         this.recipes = recipes;
     });
   }

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import { Recipe } from '../models/recipe';
 
 @Injectable()
-export class DetailedSearchService {
+export class SearchByTitleService {
 
 
   url: string;
