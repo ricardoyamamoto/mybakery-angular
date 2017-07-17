@@ -4,7 +4,7 @@
     <form class="searchBox" fxFlex = "30" fxLayout = "column">
 
       <div>
-        <label>Search Recipe by: </label> 
+        <label>Search Recipe by: (WORKS JUST WITH TITLE)</label> 
         <app-search-criterion-selector (select)="criterion = $event"></app-search-criterion-selector>
         {{criterion}}
       </div>
