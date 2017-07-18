@@ -6,7 +6,6 @@ export class Recipe {
   _id: string;
   title: string;
   category: Category[];
-  author: string;
   photo: string;
   numberOfServings: number;
   preparationTime: number;
