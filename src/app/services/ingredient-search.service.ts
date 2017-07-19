@@ -13,9 +13,9 @@ export class IngredientSearchService {
 
   constructor(private http: Http) {}
 
-  readSearchedIngredients(term: string): Observable<Ingredient[]> {
+  readSearchedIngredients(term: string, page: number): Observable<Ingredient[]> {
 
-    this.url = `http://localhost:3000/ingredient-search/?q=${term}`;
+    this.url = `http://localhost:3000/ingredient-search/?q=${term}&page=${page}`;
 
     return this.http
           .get(this.url)

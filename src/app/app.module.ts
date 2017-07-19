@@ -10,7 +10,7 @@ import {Angular2FontawesomeModule} from 'angular2-fontawesome';
 import {
   MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
   MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
-  MdTableModule, MdSelectModule, MdChipsModule
+  MdTableModule, MdSelectModule, MdChipsModule, MdPaginatorModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
@@ -107,7 +107,7 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
     MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
-    MdTableModule, MdSelectModule, MdChipsModule,
+    MdTableModule, MdSelectModule, MdChipsModule, MdPaginatorModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],

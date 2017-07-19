@@ -21,20 +21,23 @@
 
 <table style="padding:500px">
   <tr>
-    <th>ID</th>
     <th>Name</th>
     <th>Description</th> 
     <th>Default Unit</th> 
     <th></th>
   </tr>
   <tr *ngFor="let ingredient of ingredients">
-    <td *ngIf="ingredient">{{ingredient._id}}</td>
     <td>{{ingredient.name}}</td>
     <td>{{ingredient.description}}</td> 
     <td>{{ingredient.defaultUnit.unit}}</td>
     <td><button md-raised-button onclick="">Edit</button></td> 
   </tr>
 </table>
+<!--<md-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = $event">
+</md-paginator>-->
 
 
  
