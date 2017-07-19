@@ -16,7 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
-import { DataSource, CdkTableModule } from '@angular/cdk';
+import { CdkTableModule } from '@angular/cdk';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -43,11 +43,14 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
+
 import { SearchByTitleService } from './services/search-by-title.service';
 import { SearchByCategoryService } from './services/search-by-category.service';
 import { RecipeListService } from './services/recipe-list.service';
-import { AddRecipeComponent } from './recipe/add-recipe.component/add-recipe.component';
-import { AddRecipeService } from './services/recipe.service';
+import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
+
+import { RecipeService } from './services/recipe.service';
+
 
 import { RecipeIngredientComponent } from './recipe-ingredient/recipe-ingredient.component';
 import { RecipeIngredientService } from './services/recipe-ingredient.service';
@@ -55,6 +58,11 @@ import { RecipeIngredientService } from './services/recipe-ingredient.service';
 import { UnitService } from './services/unit.service';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './services/category.service';
+
+import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
+import { ViewRecipeDetailsComponent } from './recipe/view-recipe-details/view-recipe-details.component';
+import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
+
 
 
 const appRoutes: Routes = [
@@ -68,7 +76,10 @@ const appRoutes: Routes = [
   { path: 'detailed-search', component: DetailedSearchComponent },
   { path: 'recipe', component: AddRecipeComponent },
   { path: 'recipe-ingredient', component: RecipeIngredientComponent },
-  { path: 'category', component: CategoryComponent}
+  { path: 'category', component: CategoryComponent},
+  { path: 'view-recipe', component: ViewRecipeComponent },
+  { path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent },
+  { path: 'edit-recipe/:id', component: EditRecipeComponent }
 
 
 ];
@@ -95,7 +106,10 @@ const appRoutes: Routes = [
     SearchCriterionSelectorComponent,
     AddRecipeComponent,
     RecipeIngredientComponent,
-    CategoryComponent
+    CategoryComponent,
+    ViewRecipeComponent,
+    ViewRecipeDetailsComponent,
+    EditRecipeComponent
   ],
   imports: [
     Angular2FontawesomeModule,
@@ -117,7 +131,7 @@ const appRoutes: Routes = [
     SearchByTitleService,
     SearchByCategoryService,
     RecipeListService,
-    AddRecipeService,
+    RecipeService,
     IngredientListService,
     IngredientSearchService,
     RecipeIngredientService,

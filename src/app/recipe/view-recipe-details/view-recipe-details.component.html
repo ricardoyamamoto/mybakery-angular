@@ -1,0 +1,30 @@
+<md-card *ngIf="recipe">
+  <md-card-title>{{recipe.title}} </md-card-title>
+  <md-card-content>
+    <p>
+      <label><b>Categories:</b></label>
+      <md-chip-list>
+        <md-chip *ngFor="let category of recipe.category" isRippleEnabled="true">
+          {{category.name}}
+        </md-chip>
+      </md-chip-list>
+    </p>
+    <p><b>Number Of Servings:</b> {{recipe.numberOfServings}}</p>
+    <p><b>Preparation Time:</b> {{recipe.preparationTime}}</p>
+    <p><b>Cooking Time:</b> {{recipe.cookingTime}}</p>
+      <table border="1">
+        <tr style="align-content: center;">
+          <th style="width: 100px;align-content: center;">Ingredient</th>
+          <th style="width: 100px;align-content: center;">Quantity</th>
+          <th style="width: 100px;align-content: center;">Unit</th>
+        </tr>
+        <tr *ngFor="let recipeIngredient of recipe.recipeIngredients">
+          <td style="width: 100px;align-content: center;">{{recipeIngredient.ingredient.name}}</td>
+          <td style="width: 100px;align-content: center;">{{recipeIngredient.quantity}}</td>
+          <td style="width: 100px;align-content: center;">{{recipeIngredient.unit.shortDescription}}</td>
+        </tr>
+      </table>
+
+    <p><b>Description:</b><br/>{{recipe.description}}</p>
+  </md-card-content>
+</md-card>

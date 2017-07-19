@@ -22,12 +22,17 @@
         {{ ingredient.name }}
       </option>
     </select>
+    <div *ngIf="formIngredient.errors && (formIngredient.dirty || formIngredient.touched || !formIngredient.pristine)">
+        <div [hidden]="!formIngredient.errors.required">
+          Name is required
+        </div>
+    </div>
   </span>
   <span>
     <label>Quantity: </label>
     <!--md-input-container-->
       <input name="quantity" placeholder="Quantity" [(ngModel)]="quantity"
-             [formControl]="quantityFormControl" required>
+             [formControl]="quantityFormControl" type="number" required>
       <!--md-error *ngIf="quantityFormControl.hasError('required')">
         Quantityl is <strong>required</strong>
       </md-error>
@@ -45,7 +50,7 @@
     <button md-raised-button (click)="addIngredient()">Add Ingredient</button>
   </span>
   </div>
-</form>
+
 
   <div >
     <md-table #table [dataSource]="dataSource">
@@ -103,3 +108,4 @@
       <md-row *cdkRowDef="let recipeIngredient; columns: displayedColumns;"></md-row>
     </md-table>
   </div>
+</form>

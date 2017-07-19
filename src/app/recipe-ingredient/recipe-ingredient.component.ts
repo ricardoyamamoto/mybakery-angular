@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 
 // Observable class extensions
@@ -38,6 +38,7 @@ export class RecipeIngredientComponent implements OnInit {
   @Input() quantity: number;
   @Input() selectedUnit: Unit;
   @Input() selectedIngredient: Ingredient;
+  @Input() recipeIngredients: RecipeIngredient[];
   @Output() notify: EventEmitter<RecipeIngredient[]> = new EventEmitter<RecipeIngredient[]>();
 
   recipeIngredientDatabase = new RecipeIngredientDatabase();
@@ -71,24 +72,35 @@ export class RecipeIngredientComponent implements OnInit {
 
 
   ngOnInit() {
-    this.recipeIngredientService.readAll().subscribe(ingredients => {
-      this.ingredients = ingredients;
-    });
-
-    this.unitService.readAll().subscribe(units => {
-      this.units = units;
+    const ingredientsObservable = this.recipeIngredientService.readAll();
+    const unitsObservable = this.unitService.readAll();
+    Observable.forkJoin([ingredientsObservable, unitsObservable]).subscribe(results => {
+      this.ingredients = results[0];
+      this.units = results[1];
+      if (this.recipeIngredients) {
+        this.populateIdFields();
+      }
     });
     this.dataSource = new RecipeIngredientDataSource(this.recipeIngredientDatabase);
-    this.filteredIngredients = this.myControl.valueChanges
-      .startWith(null)
-      .map(ingredient => ingredient  && typeof ingredient === 'object' ? ingredient.name : ingredient)
-      .map(name => name ? this.filter(name) : this.ingredients.slice());
 
   }
 
 
-  filter(name: string): Ingredient[] {
-    return this.ingredients.filter(ingredient => new RegExp(`^${name}`, 'gi').test(ingredient.name));
+  populateIdFields(): void {
+    for (let i = 0; i < this.recipeIngredients.length; i++) {
+      this.selectedIngredient = this.filterIngredient(this.recipeIngredients[i].ingredient._id);
+      this.quantity = this.recipeIngredients[i].quantity;
+      this.selectedUnit = this.filterUnit(this.recipeIngredients[i].unit._id);
+      this.addIngredient();
+    }
+  }
+
+  filterIngredient(_id: string): Ingredient {
+    return this.ingredients.find(item => item._id === _id);
+  }
+
+  filterUnit(_id: string): Unit {
+    return this.units.find(item => item._id === _id);
   }
 
   displayFn(ingredient: Ingredient): any {
@@ -102,6 +114,7 @@ export class RecipeIngredientComponent implements OnInit {
       this.quantity,
       this.selectedUnit
     );
+
     this.recipeIngredientDatabase.addIngredient(recipeIngredient);
 
     /** clear the fields after adding a new ingredient **/

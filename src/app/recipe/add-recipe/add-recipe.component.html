@@ -1,9 +1,8 @@
-
 <div>
   <h2>{{header}}</h2>
 </div>
 
-<form class="example-form">
+<form class="example-form" #recipeForm="ngForm">
   <md-input-container class="example-full-width">
     <input mdInput placeholder={{title}} name="recipeName" [(ngModel)]="addRecipe.title" required >
   </md-input-container>
@@ -12,14 +11,17 @@
     <app-category (notify)="onNotifyCategories($event)"></app-category>
     <tr>
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder={{numberOfServings}} name="numberOfServings" [(ngModel)]="addRecipe.numberOfServings" required>
+      <input mdInput placeholder={{numberOfServings}} type="number" name="numberOfServings" [(ngModel)]="addRecipe.numberOfServings" required>
     </md-input-container></td>
   </tr></table>
 
    <table class="example-full-width" cellspacing="0"><tr>
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder={{preparationTime}} name="preparationTime" [(ngModel)]="addRecipe.preparationTime" required>
+      <input mdInput placeholder={{preparationTime}} type="number" name="preparationTime" [(ngModel)]="addRecipe.preparationTime" required>
     </md-input-container></td>
+     <td><md-input-container class="example-full-width">
+       <input mdInput placeholder={{cookingTime}} type="number" name="cookingTime" [(ngModel)]="addRecipe.cookingTime" required>
+     </md-input-container></td>
     </tr>
 
   </table>
@@ -28,7 +30,6 @@
   <app-recipe-ingredient (notify)="onNotifyIngredients($event)"></app-recipe-ingredient>
 
   <md-input-container class="example-full-width">
-
     <textarea rows="10" cols="100" mdInput placeholder={{description}} name="description" [(ngModel)]="addRecipe.description" required>
     </textarea>
   </md-input-container>
@@ -36,7 +37,7 @@
   <table>
     <tr>
       <td>
-      <button type="submit" md-raised-button (click)="save()"> {{submit}}</button>
+      <button type="submit" md-raised-button (click)="save()" [disabled]="!recipeForm.form.valid"> {{submit}}</button>
       </td>
     </tr>
   </table>

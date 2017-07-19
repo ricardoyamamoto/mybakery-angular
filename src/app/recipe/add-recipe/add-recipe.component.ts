@@ -2,14 +2,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import {AddRecipeService} from '../../services/recipe.service';
+import {RecipeService} from '../../services/recipe.service';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
 
 import { Recipe } from '../../models/recipe';
 import { RecipeIngredient } from '../../models/recipe-ingredient';
 import { Category } from '../../models/category';
-import { JsonRecipe } from './json-recipe';
-import { JsonRecipeIngredient } from './json-recipe-ingredient';
+import { JsonRecipe } from '../json-recipe';
+import { JsonRecipeIngredient } from '../json-recipe-ingredient';
 
 @Component({
   selector: 'app-add-recipe',
@@ -26,6 +26,7 @@ export class AddRecipeComponent implements OnInit {
   numberOfServings = 'Number of Servings';
   description = 'Description';
   preparationTime = 'Preparation Time';
+  cookingTime = 'Cooking Time';
   submit = 'Submit';
 
   @Input() addRecipe: JsonRecipe;
@@ -35,7 +36,7 @@ export class AddRecipeComponent implements OnInit {
   addedRecipe: Recipe;
 
   constructor(
-    private addRecipeService: AddRecipeService,
+    private addRecipeService: RecipeService,
     private route: ActivatedRoute,
     private location: Location
   ) {    }

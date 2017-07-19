@@ -1,38 +1,32 @@
-
-
-
-
-
-<form class="example-form" (ngSubmit)="updateRecipe(recipe._id)" #recipeForm="ngForm">
-  <md-input-container class="example-full-width">
-    <input mdInput placeholder={{recipeName}} name="recipeName" [(ngModel)]="recipe.recipeName" required >
+<form class="example-form" (ngSubmit)="updateRecipe(recipe._id)" #recipeForm="ngForm" *ngIf="recipe">
+  <md-input-container class="example-full-width" >
+    <input mdInput placeholder={{recipeName}} name="recipeName" [(ngModel)]="editRecipe.title" required >
   </md-input-container>
-
   <table class="example-full-width" cellspacing="0"><tr>
-    <td><md-input-container class="example-full-width">
-      <input mdInput placeholder={{category}} name="category" [(ngModel)]="recipe.category" required>
-    </md-input-container></td></tr>
+    <app-category [categories]="categories" (notify)="onNotifyCategories($event)"></app-category>
     <tr>
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder={{numberOfServings}} name="numberOfServings" [(ngModel)]="recipe.numberOfServings" required>
+      <input mdInput placeholder={{numberOfServings}} name="numberOfServings" [(ngModel)]="editRecipe.numberOfServings" required>
     </md-input-container></td>
   </tr></table>
 
    <table class="example-full-width" cellspacing="0"><tr>
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder={{preparationTime}} name="preparationTime" [(ngModel)]="recipe.preparationTime" required>
+      <input mdInput placeholder={{preparationTime}} name="preparationTime" [(ngModel)]="editRecipe.preparationTime" required>
     </md-input-container></td>
     <td><md-input-container class="example-full-width">
-      <input mdInput placeholder={{cookingTime}} name="cookingTime" [(ngModel)]="recipe.cookingTime" required>
-    </md-input-container></td>
-    </tr>
-    <tr>
-    <td><md-input-container class="example-full-width">
-      <input mdInput placeholder={{author}} name="author" [(ngModel)]="recipe.author" required>
-
+      <input mdInput placeholder={{cookingTime}} name="cookingTime" [(ngModel)]="editRecipe.cookingTime" required>
     </md-input-container></td>
   </tr>
   </table>
+  <!-- Recipe ingredient component -->
+  <app-recipe-ingredient [recipeIngredients]="recipeIngredients" (notify)="onNotifyIngredients($event)"></app-recipe-ingredient>
+
+  <md-input-container class="example-full-width">
+    <textarea rows="10" cols="100" mdInput placeholder={{description}} name="description" [(ngModel)]="editRecipe.description" required>
+    </textarea>
+  </md-input-container>
+
   <table>
     <tr>
       <td>

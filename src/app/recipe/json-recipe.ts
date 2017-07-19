@@ -6,6 +6,7 @@ export class JsonRecipe {
      recipeIngredients: JsonRecipeIngredient[];
      numberOfServings: number;
      preparationTime: number;
+     cookingTime: number;
      author: string;
      description: string;
      lastModified: string;
