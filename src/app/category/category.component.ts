@@ -22,7 +22,9 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.category = <Category>{};
-    /*this.categories = new Array<Category>();*/
+    if (! this.categories) {
+      this.categories = new Array<Category>();
+    }
   }
   /** The save method checks whether the category has already been selected.
    *  If not, then it checks whether it exists in the database.
@@ -49,6 +51,9 @@ export class CategoryComponent implements OnInit {
 
   /** Checks whether a category has already been selected by the user **/
   alreadyAdded(name: string): boolean {
+    /*if (this.categories === undefined) {
+      return false;
+    }*/
     let i;
     for (i = 0; i < this.categories.length; i++) {
       if (this.categories[i].name === name) {

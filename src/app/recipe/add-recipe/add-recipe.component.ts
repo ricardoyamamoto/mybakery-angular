@@ -1,6 +1,5 @@
-
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import {RecipeService} from '../../services/recipe.service';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
@@ -28,6 +27,7 @@ export class AddRecipeComponent implements OnInit {
   preparationTime = 'Preparation Time';
   cookingTime = 'Cooking Time';
   submit = 'Submit';
+  back = 'Back';
 
   @Input() addRecipe: JsonRecipe;
   categories: string[];
@@ -37,7 +37,7 @@ export class AddRecipeComponent implements OnInit {
 
   constructor(
     private addRecipeService: RecipeService,
-    private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {    }
 
@@ -51,9 +51,14 @@ export class AddRecipeComponent implements OnInit {
       .addNewRecipe(this.addRecipe)
       .subscribe(addedRecipe => {
         this.addedRecipe = addedRecipe;
+        this.router.navigate(['detailed-search']);
       });
       console.log('Done');
   };
+
+  goBack(): void {
+    this.location.back();
+  }
 
 
   onNotifyCategories(categories: Category[]): void {

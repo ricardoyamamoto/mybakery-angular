@@ -7,7 +7,8 @@ import {ListResult} from './api/list-result.interface';
 @Injectable()
 export class RecipesService {
 
-  recipes: Recipe[] = [];/*
+  recipes: Recipe[] = [];
+  /*
     {
       name: 'cheese cake',
       category: 'dessert',

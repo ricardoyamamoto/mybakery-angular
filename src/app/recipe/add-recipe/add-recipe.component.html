@@ -37,7 +37,10 @@
   <table>
     <tr>
       <td>
-      <button type="submit" md-raised-button (click)="save()" [disabled]="!recipeForm.form.valid"> {{submit}}</button>
+      <button type="submit" md-raised-button (click)="save()" [disabled]="!recipeForm.form.valid">{{submit}}</button>
+      </td>
+      <td>
+        <button type="submit" md-raised-button (click)="goBack()">{{back}}</button>
       </td>
     </tr>
   </table>

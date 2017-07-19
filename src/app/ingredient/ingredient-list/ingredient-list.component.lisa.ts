@@ -24,12 +24,12 @@ export class IngredientListLisaComponent implements OnInit {    //////////// cha
 
     ngOnInit() {
         this.ingredientListService.readAll().subscribe(ingredients => {
-        this.ingredients = ingredients;
+          this.ingredients = ingredients;
         });
     }
 
     showSearchResults(term : string): void {
-        if (term != "")
+        if (term != '')
         {
             this.ingredients = [];
             this.ingredientSearchService.readSearchedIngredients(term).subscribe(ingredients => {

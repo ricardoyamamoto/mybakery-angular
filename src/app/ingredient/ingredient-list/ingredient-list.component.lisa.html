@@ -1,9 +1,10 @@
 <h3>List of Ingredients</h3>
 
 <div style="padding: 30px">
-    <button md-raised-button onclick="">Add New Ingredient</button>
+
 
     <form class="searchBox" fxFlex = "30" fxLayout = "column">
+      <button md-raised-button onclick="" >Add New Ingredient</button>
       <div class="input-group input-group-sm">
         <md-input-container>
           <md-icon mdPrefix style="color:mediumpurple;font-size:120%">search</md-icon>
@@ -18,23 +19,22 @@
       </div>
     </form>
 </div>
-
-<table style="padding:500px">
+<table style="padding:50px">
   <tr>
     <th>ID</th>
     <th>Name</th>
-    <th>Description</th> 
-    <th>Default Unit</th> 
+    <th>Description</th>
+    <th>Default Unit</th>
     <th></th>
   </tr>
   <tr *ngFor="let ingredient of ingredients">
     <td *ngIf="ingredient">{{ingredient._id}}</td>
     <td>{{ingredient.name}}</td>
-    <td>{{ingredient.description}}</td> 
+    <td>{{ingredient.description}}</td>
     <td>{{ingredient.defaultUnit.unit}}</td>
-    <td><button md-raised-button onclick="">Edit</button></td> 
+    <td><button md-raised-button onclick="">Edit</button></td>
   </tr>
 </table>
 
 
- 
+

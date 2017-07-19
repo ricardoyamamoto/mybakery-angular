@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { RecipeService} from '../../services/recipe.service';
 import {JsonRecipe} from '../json-recipe';
 import {Category} from '../../models/category';
@@ -13,7 +14,7 @@ import {Recipe} from '../../models/recipe';
 })
 export class EditRecipeComponent implements OnInit {
 
-  header = 'Add-Recipe';
+  header = 'Edit Recipe';
   toolbarTitle = 'myBakery';
   recipeName = 'Recipe Name';
   category = 'Category';
@@ -23,14 +24,17 @@ export class EditRecipeComponent implements OnInit {
   preparationTime = 'Preparation Time';
   description = 'Description';
   submit = 'Submit';
+  back = 'Back';
   recipeIngredients: RecipeIngredient[];
   categories: Category[];
   editRecipe: JsonRecipe;
+
   @Input() recipe: Recipe;
 
   constructor(private editRecipeService: RecipeService,
-  private router: Router,
-  private route: ActivatedRoute
+              private router: Router,
+              private route: ActivatedRoute,
+              private location: Location
  ) { }
 
   ngOnInit() {
@@ -53,12 +57,15 @@ export class EditRecipeComponent implements OnInit {
     });
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 
   updateRecipe(id) {
     this.editRecipe.lastModified = new Date().toString();
     this.editRecipeService.updateRecipe(id, this.editRecipe).then((result) => {
      // const id = result['_id'];
-      this.router.navigate(['recipe-detail', id]);
+      this.router.navigate(['detailed-search']);
     }, (err) => {
       console.log(err);
     });
