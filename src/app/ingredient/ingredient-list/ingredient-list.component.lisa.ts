@@ -12,9 +12,10 @@ import { Ingredient } from '../../models/ingredient';
 })
 
 export class IngredientListLisaComponent implements OnInit {    //////////// change name
-
+  
     /** Variables used to store the ingredients**/
     ingredients: Array<Ingredient>;
+    page: number = 0;   
 
     constructor(
         private ingredientListService: IngredientListService,
@@ -32,7 +33,7 @@ export class IngredientListLisaComponent implements OnInit {    //////////// cha
         if (term != '')
         {
             this.ingredients = [];
-            this.ingredientSearchService.readSearchedIngredients(term).subscribe(ingredients => {
+            this.ingredientSearchService.readSearchedIngredients(term, this.page).subscribe(ingredients => {
                 this.ingredients = ingredients;
             });
         }
