@@ -15,7 +15,7 @@ export class RecipeListService {
 
   readAll(): Observable<Recipe[]> {
 
-    this.url = `http://localhost:3000/recipe`;
+    this.url = `http://localhost:3000/recipe/all`;
 
     return this.http
           .get(this.url)
