@@ -6,12 +6,12 @@ export class Recipe {
   _id: string;
   title: string;
   category: Category[];
-  author: string;
   photo: string;
   numberOfServings: number;
   preparationTime: number;
+  cookingTime: number;
   recipeIngredients: RecipeIngredient[];
   price: number;
   description: string;
-  lastModified: string;
+  lastModified: Date;
 }

@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {EditRecipeService} from '../edit-recipe/edit-recipe.service';
+import { Location } from '@angular/common';
+import { RecipeService} from '../../services/recipe.service';
+import {JsonRecipe} from '../json-recipe';
+import {Category} from '../../models/category';
+import {RecipeIngredient} from '../../models/recipe-ingredient';
+import {JsonRecipeIngredient} from 'app/recipe/json-recipe-ingredient';
+import {Recipe} from '../../models/recipe';
 @Component({
   selector: 'app-edit-recipe',
   templateUrl: './edit-recipe.component.html',
@@ -8,7 +14,7 @@ import {EditRecipeService} from '../edit-recipe/edit-recipe.service';
 })
 export class EditRecipeComponent implements OnInit {
 
-  header = 'Add-Recipe';
+  header = 'Edit Recipe';
   toolbarTitle = 'myBakery';
   recipeName = 'Recipe Name';
   category = 'Category';
@@ -16,43 +22,74 @@ export class EditRecipeComponent implements OnInit {
   numberOfServings = 'Number of Servings';
   cookingTime = 'Cooking Time';
   preparationTime = 'Preparation Time';
+  description = 'Description';
   submit = 'Submit';
+  back = 'Back';
+  recipeIngredients: RecipeIngredient[];
+  categories: Category[];
+  editRecipe: JsonRecipe;
 
+  @Input() recipe: Recipe;
 
-  recipe = { };
-
-  constructor(private editRecipeService: EditRecipeService,
-  private router: Router,
-  private route: ActivatedRoute
+  constructor(private editRecipeService: RecipeService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private location: Location
  ) { }
 
   ngOnInit() {
-    this.getRecipe(this.route.snapshot.params['id']);
-  }
-  getRecipe(id) {
-    this.editRecipeService.getRecipe(id).subscribe((res) => {
+
+    this.editRecipeService.getRecipe(this.route.snapshot.params['id']).subscribe((res) => {
       this.recipe = res;
-      console.log(this.recipe);
+      this.recipeIngredients = this.recipe.recipeIngredients;
+      this.categories = this.recipe.category;
+      this.editRecipe = <JsonRecipe>{};
+      this.editRecipe.title = this.recipe.title;
+      this.editRecipe.numberOfServings = this.recipe.numberOfServings;
+      this.editRecipe.preparationTime = this.recipe.preparationTime;
+      this.editRecipe.cookingTime = this.recipe.cookingTime;
+      this.editRecipe.description = this.recipe.description;
+
+      console.log(this.recipeIngredients);
+      console.log(this.categories);
     }, (err) => {
       console.log(err);
     });
   }
 
-  // updateRecipe(id) {
-  //  this.editRecipeService.updateRecipe(id).then((res) => {
-  //     this.recipe = res;
-  //     console.log(this.recipe);
-  //   }, (err) => {
-  //     console.log(err);
-  //   });
-  // }
+  goBack(): void {
+    this.location.back();
+  }
 
   updateRecipe(id) {
-    this.editRecipeService.updateRecipe(id, this.recipe).then((result) => {
+    this.editRecipe.lastModified = new Date().toString();
+    this.editRecipeService.updateRecipe(id, this.editRecipe).then((result) => {
      // const id = result['_id'];
-      this.router.navigate(['recipe-detail', id]);
+      this.router.navigate(['detailed-search']);
     }, (err) => {
       console.log(err);
     });
   }
+
+
+  onNotifyCategories(categories: Category[]): void {
+    this.editRecipe.category = [];
+    for (let i = 0; i < categories.length; i++) {
+      this.editRecipe.category.push(categories[i]._id);
+    }
+  }
+
+  onNotifyIngredients(recipeIngredients: RecipeIngredient[]): void {
+    this.editRecipe.recipeIngredients = [];
+    for (let i = 0; i < recipeIngredients.length; i++) {
+      let recipeIngredient: JsonRecipeIngredient;
+      recipeIngredient = new JsonRecipeIngredient(
+        recipeIngredients[i].ingredient._id,
+        recipeIngredients[i].quantity,
+        recipeIngredients[i].unit._id
+      );
+      this.editRecipe.recipeIngredients.push(recipeIngredient);
+    }
+  }
+
 }

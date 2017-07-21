@@ -12,6 +12,10 @@ export class RecipeIngredientDatabase {
   dataChange: BehaviorSubject<RecipeIngredient[]> = new BehaviorSubject<RecipeIngredient[]>([]);
   get data(): RecipeIngredient[] { return this.dataChange.value; }
 
+  setData(recipeIngredients: RecipeIngredient[]) {
+    this.dataChange.next(recipeIngredients);
+  }
+
   /** Adds a new recipe ingredient to the in memory database. */
   addIngredient(recipeIngredient: RecipeIngredient) {
     const copiedData = this.data.slice();

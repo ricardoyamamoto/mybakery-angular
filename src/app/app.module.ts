@@ -10,13 +10,13 @@ import {Angular2FontawesomeModule} from 'angular2-fontawesome';
 import {
   MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
   MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
-  MdTableModule, MdSelectModule, MdChipsModule
+  MdTableModule, MdSelectModule, MdChipsModule, MdPaginatorModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
-import { DataSource, CdkTableModule } from '@angular/cdk';
+import { CdkTableModule } from '@angular/cdk';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +30,10 @@ import { IngredientItemComponent } from './ingredient/ingredient-list/ingredient
 import { IngredientComponent} from './ingredient/ingredient.component';
 import { IngredientDetailComponent} from './ingredient/ingredient-detail/ingredient-detail.component';
 import { IngredientListComponent } from './ingredient/ingredient-list/ingredient-list.component';
+import { IngredientListLisaComponent } from './ingredient/ingredient-list/ingredient-list.component.lisa';  //////
+import { IngredientListService } from './services/ingredient-list.service';
+import { IngredientSearchService } from './services/ingredient-search.service';
+
 
 import { TopToolbarComponent } from './shared/header/top-toolbar.component';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
@@ -37,12 +41,16 @@ import { RecipeListComponent } from './shared/recipe-list/recipe-list.component'
 import { PaginationComponent } from './shared/pagination/pagination.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
-
 import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
 import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
-import { DetailedSearchService } from './detailed-search/detailed-search.service';
-import { AddRecipeComponent } from './recipe/add-recipe.component/add-recipe.component';
-import { AddRecipeService } from './services/recipe.service';
+
+import { SearchByTitleService } from './services/search-by-title.service';
+import { SearchByCategoryService } from './services/search-by-category.service';
+import { RecipeListService } from './services/recipe-list.service';
+import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
+
+import { RecipeService } from './services/recipe.service';
+
 
 import { RecipeIngredientComponent } from './recipe-ingredient/recipe-ingredient.component';
 import { RecipeIngredientService } from './services/recipe-ingredient.service';
@@ -51,6 +59,11 @@ import { UnitService } from './services/unit.service';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './services/category.service';
 
+import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
+import { ViewRecipeDetailsComponent } from './recipe/view-recipe-details/view-recipe-details.component';
+import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
+
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -58,11 +71,16 @@ const appRoutes: Routes = [
   { path: 'users', component: UserListComponent },
   { path: 'user-detail', component: UserDetailComponent },
   { path: 'ingredient', component: IngredientComponent},
-  { path: 'ingredients', component: IngredientListComponent },
+  { path: 'ingredients', component: IngredientListLisaComponent},
+  //{ path: 'ingredients', component: IngredientListComponent },
   { path: 'detailed-search', component: DetailedSearchComponent },
   { path: 'recipe', component: AddRecipeComponent },
   { path: 'recipe-ingredient', component: RecipeIngredientComponent },
-  { path: 'category', component: CategoryComponent}
+  { path: 'category', component: CategoryComponent},
+  { path: 'view-recipe', component: ViewRecipeComponent },
+  { path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent },
+  { path: 'edit-recipe/:id', component: EditRecipeComponent }
+
 
 ];
 
@@ -75,6 +93,7 @@ const appRoutes: Routes = [
     TopToolbarComponent,
     UserDetailComponent,
     IngredientListComponent,
+    IngredientListLisaComponent,
     IngredientItemComponent,
     IngredientComponent,
     IngredientDetailComponent,
@@ -87,7 +106,10 @@ const appRoutes: Routes = [
     SearchCriterionSelectorComponent,
     AddRecipeComponent,
     RecipeIngredientComponent,
-    CategoryComponent
+    CategoryComponent,
+    ViewRecipeComponent,
+    ViewRecipeDetailsComponent,
+    EditRecipeComponent
   ],
   imports: [
     Angular2FontawesomeModule,
@@ -99,15 +121,19 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
     MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
-    MdTableModule, MdSelectModule, MdChipsModule,
+    MdTableModule, MdSelectModule, MdChipsModule, MdPaginatorModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
     UserListService,
     UserService,
-    DetailedSearchService,
-    AddRecipeService,
+    SearchByTitleService,
+    SearchByCategoryService,
+    RecipeListService,
+    RecipeService,
+    IngredientListService,
+    IngredientSearchService,
     RecipeIngredientService,
     UnitService,
     CategoryService,
