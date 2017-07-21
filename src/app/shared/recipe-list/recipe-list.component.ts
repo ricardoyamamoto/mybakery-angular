@@ -45,10 +45,10 @@ export class RecipeListComponent implements OnInit {
   total$: Observable<number>;
   items$: Observable<Recipe[]>;
 
-  terms = ''; // terms in the search box
-  private searchTermStream = new Subject<string>();
+  page = 1;
+  terms = '';
 
-  page = 1; // page starts from 1
+  private searchTermStream = new Subject<string>();
   private pageStream = new Subject<number>();
 
   constructor(protected recipeService: RecipesService) {
@@ -83,8 +83,14 @@ export class RecipeListComponent implements OnInit {
       })
       .share();
 
+
+    // test only
+    source.subscribe(val => console.log(val))
+
     this.total$ = source.pluck('total');
     this.items$ = source.pluck('items');
+    this.total$.subscribe(val => console.log(val));
+    this.items$.subscribe(val => console.log(val));
   }
 
   search(terms: string) {

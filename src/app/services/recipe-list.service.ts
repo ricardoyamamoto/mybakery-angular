@@ -19,6 +19,6 @@ export class RecipeListService {
 
     return this.http
           .get(this.url)
-          .map(response => response.json() as Recipe[]);   
+          .map(response => response.json() as Recipe[]);
   }
 }

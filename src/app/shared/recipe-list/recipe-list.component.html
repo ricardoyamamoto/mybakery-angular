@@ -25,10 +25,10 @@
 <div class="list-recipe">
 <md-grid-list cols="5" rowHeight="250px">
   <md-grid-tile *ngFor="let recipe of items$ | async" >
-    <img src="assets/{{recipe.name}}.png" alt="photo of {{recipe.name}}">
+    <!--<img src="assets/{{recipe.title}}.png" alt="photo of {{recipe.title}}">-->
     <md-grid-tile-footer>
-      <h3 md-line>{{recipe.name}}</h3>
-      <span md-line>Category: {{recipe.category}}</span>
+      <h3 md-line>{{recipe.title}}</h3>
+      <span md-line>Preparation : {{recipe.preparationTime}} mins</span>
         <button md-icon-button (click)="selectedRecipe = recipe" routerLink="/users">
         <md-icon>info</md-icon>
       </button>
