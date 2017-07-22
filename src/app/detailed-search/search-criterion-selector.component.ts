@@ -7,7 +7,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class SearchCriterionSelectorComponent {
     @Output() select = new EventEmitter();
-    criteria: Array<string> = ["Keyword", "Category", "Title"] //, "User"];
+    criteria: Array<string> = ["Category", "Title"] //"Keyword", "User"];
 
     ngOnInit() {
         this.select.emit(this.criteria[0]);

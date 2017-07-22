@@ -4,14 +4,14 @@
     <form class="searchBox" fxFlex = "30" fxLayout = "column">
 
       <div>
-        <label>Search Recipe by: (SELECT TITLE OR CATEGORY)</label>
-        <app-search-criterion-selector (select)="criterion = $event"></app-search-criterion-selector>
-        {{criterion}}
+        <label>Search Recipe by: </label>
+        <app-search-criterion-selector style="padding:6px" (select)="criterion = $event"></app-search-criterion-selector>
+        <!--{{criterion}}-->
       </div>
 
       <div class="input-group input-group-sm">
         <md-input-container>
-          <md-icon mdPrefix style="color:mediumpurple;font-size:120%">search</md-icon>
+          <md-icon mdPrefix style="color:mediumpurple;font-size:130%">search</md-icon>
           <input #searchBox type="search"  mdInput class="form-control">
           <md-placeholder>Search terms</md-placeholder>
         </md-input-container>
