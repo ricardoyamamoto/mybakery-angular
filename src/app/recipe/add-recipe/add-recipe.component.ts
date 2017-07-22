@@ -17,7 +17,7 @@ import { JsonRecipeIngredient } from '../json-recipe-ingredient';
 })
 export class AddRecipeComponent implements OnInit {
 
-  header = 'Add-Recipe';
+  header = 'Add Recipe';
   toolbarTitle = 'myBakery';
   title = 'Recipe Title';
   category = 'Category';
