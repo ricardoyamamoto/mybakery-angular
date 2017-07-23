@@ -19,6 +19,7 @@ export class AddIngredientComponent implements OnInit {
 
   constructor(private router: Router, private ingredientListService: IngredientService) {
   }
+
   ngOnInit() {
     // this.ingredientListService.readUnits().subscribe((data: Unit[]) => {
     //   this.units = new Array<Unit>();
@@ -33,6 +34,10 @@ export class AddIngredientComponent implements OnInit {
   }
 
   addIngredient() {
+
+    if (!this.myIngredient.hasOwnProperty('description')) {
+      this.myIngredient.description = ' ';
+    }
     this.ingredientListService.sendData(this.myIngredient).subscribe(data => {
       console.log(data);
     });
