@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, BrowserXhr } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule, BrowserXhr} from '@angular/http';
+import {RouterModule, Routes} from '@angular/router';
 
 import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
 
@@ -16,70 +16,73 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
-import { CdkTableModule } from '@angular/cdk';
+import {CdkTableModule} from '@angular/cdk';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { UserListComponent } from './user/user-list.component';
-import { UserListService } from './services/user-list.service';
-import { UserService } from './services/user.service';
-import { UserDetailComponent } from './user/user-detail.component';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
+import {UserListComponent} from './user/user-list.component';
+import {UserListService} from './services/user-list.service';
+import {UserService} from './services/user.service';
+import {UserDetailComponent} from './user/user-detail.component';
 
-import { IngredientItemComponent } from './ingredient/ingredient-list/ingredient-item.component';
-import { IngredientComponent} from './ingredient/ingredient.component';
-import { IngredientDetailComponent} from './ingredient/ingredient-detail/ingredient-detail.component';
-import { IngredientListComponent } from './ingredient/ingredient-list/ingredient-list.component';
-import { IngredientListLisaComponent } from './ingredient/ingredient-list/ingredient-list.component.lisa';  //////
-import { IngredientListService } from './services/ingredient-list.service';
-import { IngredientSearchService } from './services/ingredient-search.service';
-
-
-import { TopToolbarComponent } from './shared/header/top-toolbar.component';
-import { SidenavComponent } from './shared/sidenav/sidenav.component';
-import { RecipeListComponent } from './shared/recipe-list/recipe-list.component';
-import { PaginationComponent } from './shared/pagination/pagination.component';
-import { FooterComponent } from './shared/footer/footer.component';
-
-import { DetailedSearchComponent } from './detailed-search/detailed-search.component';
-import { SearchCriterionSelectorComponent } from './detailed-search/search-criterion-selector.component';
-
-import { SearchByTitleService } from './services/search-by-title.service';
-import { SearchByCategoryService } from './services/search-by-category.service';
-import { RecipeListService } from './services/recipe-list.service';
-import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
-
-import { RecipeService } from './services/recipe.service';
+import {IngredientItemComponent} from './ingredient/ingredient-list/ingredient-item.component';
+import {IngredientComponent} from './ingredient/ingredient.component';
+import {IngredientDetailComponent} from './ingredient/ingredient-detail/ingredient-detail.component';
+import {IngredientListComponent} from './ingredient/ingredient-list/ingredient-list.component';
+import {IngredientListLisaComponent} from './ingredient/ingredient-list/ingredient-list.component.lisa';  //////
+import {IngredientListService} from './services/ingredient-list.service';
+import {IngredientSearchService} from './services/ingredient-search.service';
 
 
-import { RecipeIngredientComponent } from './recipe-ingredient/recipe-ingredient.component';
-import { RecipeIngredientService } from './services/recipe-ingredient.service';
+import {TopToolbarComponent} from './shared/header/top-toolbar.component';
+import {SidenavComponent} from './shared/sidenav/sidenav.component';
+import {RecipeListComponent} from './shared/recipe-list/recipe-list.component';
+import {PaginationComponent} from './shared/pagination/pagination.component';
+import {FooterComponent} from './shared/footer/footer.component';
 
-import { UnitService } from './services/unit.service';
-import { CategoryComponent } from './category/category.component';
-import { CategoryService } from './services/category.service';
+import {DetailedSearchComponent} from './detailed-search/detailed-search.component';
+import {SearchCriterionSelectorComponent} from './detailed-search/search-criterion-selector.component';
 
-import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
-import { ViewRecipeDetailsComponent } from './recipe/view-recipe-details/view-recipe-details.component';
-import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
+import {SearchByTitleService} from './services/search-by-title.service';
+import {SearchByCategoryService} from './services/search-by-category.service';
+import {RecipeListService} from './services/recipe-list.service';
+import {AddRecipeComponent} from './recipe/add-recipe/add-recipe.component';
 
+import {RecipeService} from './services/recipe.service';
+
+
+import {RecipeIngredientComponent} from './recipe-ingredient/recipe-ingredient.component';
+import {RecipeIngredientService} from './services/recipe-ingredient.service';
+
+import {UnitService} from './services/unit.service';
+import {CategoryComponent} from './category/category.component';
+import {CategoryService} from './services/category.service';
+
+import {ViewRecipeComponent} from './recipe/view-recipe/view-recipe.component';
+import {ViewRecipeDetailsComponent} from './recipe/view-recipe-details/view-recipe-details.component';
+import {EditRecipeComponent} from './recipe/edit-recipe/edit-recipe.component';
+import {IngredientService} from './services/ingredient.service';
+import {MdlModule} from '@angular-mdl/core';
+import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
+import { EditIngredientComponent } from './ingredient/edit-ingredient/edit-ingredient.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'users', component: UserListComponent },
-  { path: 'user-detail', component: UserDetailComponent },
-  { path: 'ingredient', component: IngredientComponent},
-  { path: 'ingredients', component: IngredientListLisaComponent},
+  {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'users', component: UserListComponent},
+  {path: 'user-detail', component: UserDetailComponent},
+  {path: 'ingredient', component: IngredientComponent},
+  {path: 'ingredients', component: IngredientListLisaComponent},
   //{ path: 'ingredients', component: IngredientListComponent },
-  { path: 'detailed-search', component: DetailedSearchComponent },
-  { path: 'recipe', component: AddRecipeComponent },
-  { path: 'recipe-ingredient', component: RecipeIngredientComponent },
-  { path: 'category', component: CategoryComponent},
-  { path: 'view-recipe', component: ViewRecipeComponent },
-  { path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent },
-  { path: 'edit-recipe/:id', component: EditRecipeComponent }
+  {path: 'detailed-search', component: DetailedSearchComponent},
+  {path: 'recipe', component: AddRecipeComponent},
+  {path: 'recipe-ingredient', component: RecipeIngredientComponent},
+  {path: 'category', component: CategoryComponent},
+  {path: 'view-recipe', component: ViewRecipeComponent},
+  {path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent},
+  {path: 'edit-recipe/:id', component: EditRecipeComponent}
 
 
 ];
@@ -109,7 +112,9 @@ const appRoutes: Routes = [
     CategoryComponent,
     ViewRecipeComponent,
     ViewRecipeDetailsComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    AddIngredientComponent,
+    EditIngredientComponent
   ],
   imports: [
     Angular2FontawesomeModule,
@@ -123,7 +128,8 @@ const appRoutes: Routes = [
     MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
     MdTableModule, MdSelectModule, MdChipsModule, MdPaginatorModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MdlModule,
   ],
   providers: [
     UserListService,
@@ -137,8 +143,11 @@ const appRoutes: Routes = [
     RecipeIngredientService,
     UnitService,
     CategoryService,
-    CustExtBrowserXhr
+    CustExtBrowserXhr,
+
+
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
