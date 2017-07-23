@@ -4,7 +4,7 @@
     <mdl-textfield #nameIngredientTextBox   type="text" label="Name of ingredient" [(ngModel)]="myIngredient.name"
                    floating-label autofocus></mdl-textfield>
 
-    <mdl-textfield #unitTextBox2 readonly style="width: 120px" type="text" label="Unit"
+    <mdl-textfield #unitTextBox2 readonly style="width: 120px" type="text" label="Default Unit"
                    [(ngModel)]="myUnit.shortDescription" floating-label autofocus>
     </mdl-textfield>
 
@@ -13,7 +13,7 @@
     </button>
   </p>
   <div class="mdl-textfield mdl-js-textfield" >
-  <textarea class="mdl-textfield__input" type="text" rows= "2" floating-label id="descriptionIngredientTextBox"
+  <textarea class="mdl-textfield__input" type="text" rows= "2"  floating-label id="descriptionIngredientTextBox"
             [(ngModel)]="myIngredient.description" ></textarea>
     <label class="mdl-textfield__label" for="descriptionIngredientTextBox" >Description</label>
   </div>
