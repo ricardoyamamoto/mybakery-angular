@@ -18,18 +18,6 @@ export class RecipeListComponent implements OnInit {
     title: string;
 
   selectedRecipe;
-  // recipes: Recipe[];
-  //
-  // constructor(private  recipesService: RecipesService) { }
-  //
-  // getRecipes(): void {
-  //   this.recipesService.getRecipes()
-  //     .then(recipes => this.recipes = recipes);
-  // }
-  //
-  // ngOnInit() {
-  //   this.getRecipes();
-  // }
 
   myControl: FormControl;  // control for keywords filter
   filteredKeywords: Observable<string[]>;
@@ -106,5 +94,6 @@ export class RecipeListComponent implements OnInit {
   filter(val: string): string[] {
     return this.keywords.filter(keyword => new RegExp(`^${val}`, 'gi').test(keyword));
   }
+
 
 }

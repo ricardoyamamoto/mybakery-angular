@@ -26,6 +26,7 @@
 <md-grid-list cols="5" rowHeight="250px">
   <md-grid-tile *ngFor="let recipe of items$ | async" >
     <!--<img src="assets/{{recipe.title}}.png" alt="photo of {{recipe.title}}">-->
+    <img src="assets/no-image.png" alt="photo of no image">
     <md-grid-tile-footer>
       <h3 md-line>{{recipe.title}}</h3>
       <span md-line>Preparation : {{recipe.preparationTime}} mins</span>
