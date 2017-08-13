@@ -9,6 +9,8 @@
 
   <table class="example-full-width" cellspacing="0"><tr>
     <app-category (notify)="onNotifyCategories($event)"></app-category>
+    <input hidden name="category" mdInput [(ngModel)]="addRecipe.category" required>
+    <div *ngIf="!addRecipe.category" style="color: red">Recipe must have at least one category.</div>
     <tr>
     <td><md-input-container class="example-full-width">
       <input mdInput placeholder={{numberOfServings}} type="number" name="numberOfServings" [(ngModel)]="addRecipe.numberOfServings" required>
@@ -28,12 +30,14 @@
 
   <!-- Recipe ingredient component -->
   <app-recipe-ingredient (notify)="onNotifyIngredients($event)"></app-recipe-ingredient>
-
+  <input mdInput hidden name="ingredient" [(ngModel)]="addRecipe.recipeIngredients" required>
+  <div *ngIf="!addRecipe.recipeIngredients || addRecipe.recipeIngredients.length == 0" style="color: red">Recipe must have at least one ingredient.</div>
   <md-input-container class="example-full-width">
     <textarea rows="10" cols="100" mdInput placeholder={{description}} name="description" [(ngModel)]="addRecipe.description" required>
     </textarea>
   </md-input-container>
 
+  <div *ngIf="recipeForm.form.invalid" style="color: red">Fill in the required fields in order to add the recipe.</div>
   <table>
     <tr>
       <td>

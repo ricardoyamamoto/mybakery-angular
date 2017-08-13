@@ -1,55 +1,41 @@
 <h4>Recipe Ingredients</h4>
-  <!--md-input-container>
-    <input type="text" mdInput [formControl]="myControl" [mdAutocomplete]="auto">
-  </md-input-container>
-  <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
-    <md-option *ngFor="let ingredient of filteredIngredients | async" [value]="ingredient">
-      {{ ingredient.name }}
-    </md-option>
-  </md-autocomplete>
-<md-select placeholder="Select value" [ngModel]="selectedValue">
-  <md-option *ngFor="let val of values" [value]="val">value: {{ val }}</md-option>
-</md-select-->
-
-<form #f="ngForm">
-  <div>
+<form [formGroup]="recipeIngredientForm" novalidate>
   <span>
     <label>Ingredient: </label>
     <select name="ingredient" placeholder="Igredient" [(ngModel)]="selectedIngredient"
-            [formControl]="ingredientFormControl" #formIngredient required >
+            formControlName="ingredientFormControl" #formIngredient  >
       <option  *ngFor="let ingredient of ingredients"
                [ngValue]="ingredient">
         {{ ingredient.name }}
       </option>
     </select>
-    <div *ngIf="formIngredient.errors && (formIngredient.dirty || formIngredient.touched || !formIngredient.pristine)">
-        <div [hidden]="!formIngredient.errors.required">
-          Name is required
-        </div>
-    </div>
   </span>
   <span>
     <label>Quantity: </label>
-    <!--md-input-container-->
       <input name="quantity" placeholder="Quantity" [(ngModel)]="quantity"
-             [formControl]="quantityFormControl" type="number" required>
-      <!--md-error *ngIf="quantityFormControl.hasError('required')">
-        Quantityl is <strong>required</strong>
-      </md-error>
-    </md-input-container-->
+             formControlName="quantityFormControl" type="number" min="1" #formquantity>
   </span>
+
   <span>
     <label>Unit: </label>
-    <select placeholder="Unit" [(ngModel)]="selectedUnit" [formControl]="unitFormControl" #formUnit required>
+    <select placeholder="Unit" [(ngModel)]="selectedUnit" formControlName="unitFormControl" #formUnit >
       <option  *ngFor="let unit of units" [ngValue]="unit"
               ngDefaultControl>
         {{unit.unit}}
       </option>
     </select>
 
-    <button md-raised-button (click)="addIngredient()">Add Ingredient</button>
+    <button md-raised-button (click)="addIngredient()" [disabled]="!recipeIngredientForm.valid">
+      Add Ingredient
+    </button>
   </span>
+  <div *ngIf="(!recipeIngredientForm.pristine || recipeIngredientForm.touched) && recipeIngredientForm.invalid" style="color:red">
+    <div *ngIf="recipeIngredientForm.controls.ingredientFormControl.errors?.required">Ingredient is mandatory</div>
+    <div *ngIf="recipeIngredientForm.controls.quantityFormControl.errors?.required">Quantity is mandatory</div>
+    <div *ngIf="recipeIngredientForm.controls.quantityFormControl.errors?.gt">Quantity should be greater than zero.</div>
+    <div *ngIf="recipeIngredientForm.controls.unitFormControl.errors?.required">Unit is mandatory</div>
   </div>
+
 
 
   <div >
@@ -108,4 +94,5 @@
       <md-row *cdkRowDef="let recipeIngredient; columns: displayedColumns;"></md-row>
     </md-table>
   </div>
+
 </form>

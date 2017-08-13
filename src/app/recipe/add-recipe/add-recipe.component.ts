@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import {RecipeService} from '../../services/recipe.service';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
+import { CustomValidators } from 'ng2-validation';
 
 import { Recipe } from '../../models/recipe';
 import { RecipeIngredient } from '../../models/recipe-ingredient';

@@ -25,12 +25,14 @@
   </table>
   <!-- Recipe ingredient component -->
   <app-recipe-ingredient [recipeIngredients]="recipeIngredients" (notify)="onNotifyIngredients($event)"></app-recipe-ingredient>
-
+  <input mdInput hidden name="ingredient" [(ngModel)]="editRecipe.recipeIngredients" required>
+  <div *ngIf="!editRecipe.recipeIngredients || editRecipe.recipeIngredients.length==0" style="color: red">Recipe must have at least one ingredient.</div>
   <md-input-container class="example-full-width">
     <textarea rows="10" cols="100" mdInput placeholder={{description}} name="description" [(ngModel)]="editRecipe.description" required>
     </textarea>
   </md-input-container>
 
+  <div *ngIf="recipeForm.form.invalid" style="color: red">Fill in the required fields in order to edit the recipe.</div>
   <table>
     <tr>
       <td>
