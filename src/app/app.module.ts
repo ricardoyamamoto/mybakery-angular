@@ -3,9 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, BrowserXhr} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
-
 import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
-
 import {Angular2FontawesomeModule} from 'angular2-fontawesome';
 import {
   MdButtonModule, MdCardModule, MdIconModule, MdInputModule,
@@ -15,8 +13,8 @@ import {
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {FlexLayoutModule} from '@angular/flex-layout';
-
 import {CdkTableModule} from '@angular/cdk';
+
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
@@ -47,7 +45,6 @@ import {RecipeListService} from './services/recipe-list.service';
 import {AddRecipeComponent} from './recipe/add-recipe/add-recipe.component';
 
 import {RecipeService} from './services/recipe.service';
-
 
 import {RecipeIngredientComponent} from './recipe-ingredient/recipe-ingredient.component';
 import {RecipeIngredientService} from './services/recipe-ingredient.service';
@@ -121,7 +118,7 @@ const appRoutes: Routes = [
     MdTableModule, MdSelectModule, MdChipsModule, MdPaginatorModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    MdlModule,
+    MdlModule
   ],
   providers: [
     UserListService,
@@ -135,9 +132,7 @@ const appRoutes: Routes = [
     RecipeIngredientService,
     UnitService,
     CategoryService,
-    CustExtBrowserXhr,
-
-
+    CustExtBrowserXhr
   ],
   bootstrap: [AppComponent]
 })

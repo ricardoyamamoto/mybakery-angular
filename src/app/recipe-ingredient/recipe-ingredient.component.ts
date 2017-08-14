@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { Router } from '@angular/router';
 
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -14,13 +13,13 @@ import { UnitService } from '../services/unit.service';
 
 import { Ingredient } from '../models/ingredient';
 import { Observable} from 'rxjs/Observable';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { RecipeIngredientDatabase, RecipeIngredientDataSource } from './recipe-ingredient.datasource';
 
 import { Unit } from '../models/unit';
 import { RecipeIngredient } from '../models/recipe-ingredient';
-
+import { CustomValidators } from 'ng2-validation';
 
 @Component({
   selector: 'app-recipe-ingredient',
@@ -29,6 +28,12 @@ import { RecipeIngredient } from '../models/recipe-ingredient';
 })
 
 export class RecipeIngredientComponent implements OnInit {
+
+  recipeIngredientForm = new FormGroup({
+    ingredientFormControl : new FormControl(),
+    quantityFormControl : new FormControl(),
+    unitFormControl : new FormControl()
+  });
 
   /** Variables used to store the **/
   ingredients: Array<Ingredient>;
@@ -47,27 +52,23 @@ export class RecipeIngredientComponent implements OnInit {
 
   displayedColumns = ['ingredientName', 'quantity', 'unit', 'edit', 'delete'];
 
-  filteredIngredients: Observable<Ingredient[]>;
-
-
-  myControl = new FormControl();
-
-  ingredientFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  quantityFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  unitFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
   constructor(
     private recipeIngredientService: RecipeIngredientService,
     private unitService: UnitService,
-    private router: Router) {
+    private fb: FormBuilder) {
+      this.createForm();
+  }
+
+  createForm() {
+    this.recipeIngredientForm.reset();
+    this.selectedIngredient = null;
+    this.quantity = null;
+    this.selectedUnit = null;
+    this.recipeIngredientForm = this.fb.group({
+      ingredientFormControl: ['', Validators.required],
+      quantityFormControl: ['', [Validators.required, CustomValidators.gt(0)]],
+      unitFormControl: ['', Validators.required]
+    });
   }
 
 
@@ -84,7 +85,6 @@ export class RecipeIngredientComponent implements OnInit {
     this.dataSource = new RecipeIngredientDataSource(this.recipeIngredientDatabase);
 
   }
-
 
   populateIdFields(): void {
     for (let i = 0; i < this.recipeIngredients.length; i++) {
@@ -103,10 +103,6 @@ export class RecipeIngredientComponent implements OnInit {
     return this.units.find(item => item._id === _id);
   }
 
-  displayFn(ingredient: Ingredient): any {
-    return ingredient ? ingredient.name : ingredient;
-  }
-
   /** Adds a new ingredient to the recipe or updates existing one **/
   addIngredient(): void {
     const recipeIngredient = new RecipeIngredient(
@@ -118,9 +114,7 @@ export class RecipeIngredientComponent implements OnInit {
     this.recipeIngredientDatabase.addIngredient(recipeIngredient);
 
     /** clear the fields after adding a new ingredient **/
-    this.selectedIngredient = null;
-    this.quantity = null;
-    this.selectedUnit = null;
+    this.createForm();
 
     this.notify.emit(this.recipeIngredientDatabase.data);
   }
@@ -130,6 +124,7 @@ export class RecipeIngredientComponent implements OnInit {
     this.selectedIngredient = recipeIngredient.ingredient;
     this.quantity = recipeIngredient.quantity;
     this.selectedUnit = recipeIngredient.unit;
+    this.createForm();
     this.notify.emit(this.recipeIngredientDatabase.data);
   }
 
@@ -138,9 +133,6 @@ export class RecipeIngredientComponent implements OnInit {
     this.recipeIngredientDatabase.deleteIngredient(recipeIngredient);
     this.notify.emit(this.recipeIngredientDatabase.data);
   }
-
-
-
 
 }
 
