@@ -48,8 +48,10 @@
   <app-add-ingredient [units]=units></app-add-ingredient>
 </div>
 
-<div [hidden]="switch3">
-  <app-edit-ingredient [units]=units [myIngredient]=myIngredient [myUnit]=myUnit></app-edit-ingredient>
+<<div [hidden]="switch3">
+
+  <app-edit-ingredient [units]=units [myIngredient]=myIngredient [myUnit]=myUnit [delButtonEnabled]=deleteButtonEnabled></app-edit-ingredient>
+
 </div>
 
 
