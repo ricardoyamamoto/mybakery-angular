@@ -60,7 +60,6 @@ export class IngredientListComponent implements OnInit {
           this.usedRecipeIngredients.push(data[i].recipeIngredients[j].ingredient);
         }
       }
-
     });
 
 
