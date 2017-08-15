@@ -4,7 +4,7 @@
     <mdl-textfield #nameIngredientTextBox   type="text" label="Name of ingredient" [(ngModel)]="myIngredient.name"
                    floating-label autofocus></mdl-textfield>
 
-    <mdl-textfield #unitTextBox2 readonly style="width: 120px" type="text" label="Default Unit"
+    <mdl-textfield #unitTextBox2 style="width: 120px" type="text" label="Default Unit"
                    [(ngModel)]="myUnit.shortDescription" floating-label autofocus>
     </mdl-textfield>
 
@@ -27,8 +27,13 @@
     </a>
 
     <a href="ingredients" aria-label="ingredient">
-      <button mdl-button mdl-button-type="raised" mdl-colored="primary"
+      <button #myButton mdl-button mdl-button-type="raised" mdl-colored="primary"
               mdl-ripple (click)="saveEditIngredient()">Save edition</button>
+    </a>
+
+    <a href="ingredients" aria-label="ingredient">
+      <button #deleteButton *ngIf = deleteButtonEnabled mdl-button mdl-button-type="raised" mdl-colored="primary"
+              mdl-ripple (click)="deleteIngredient()">Delete Ingredient</button>
     </a>
   </p>
 
