@@ -25,10 +25,10 @@ import {UserService} from './services/user.service';
 import {UserDetailComponent} from './user/user-detail.component';
 
 import {IngredientDetailComponent} from './ingredient/ingredient-detail/ingredient-detail.component';
-import {IngredientListComponent} from './ingredient/ingredient-list/ingredient-list.component';  //////
+import {IngredientListComponent} from './ingredient/ingredient-list/ingredient-list.component';
 import {IngredientListService} from './services/ingredient-list.service';
 import {IngredientSearchService} from './services/ingredient-search.service';
-
+import {CheckIngredientUseService} from './services/check-ingredient-use.service';
 
 import {TopToolbarComponent} from './shared/header/top-toolbar.component';
 import {SidenavComponent} from './shared/sidenav/sidenav.component';
@@ -75,8 +75,6 @@ const appRoutes: Routes = [
   {path: 'view-recipe', component: ViewRecipeComponent},
   {path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent},
   {path: 'edit-recipe/:id', component: EditRecipeComponent}
-
-
 ];
 
 @NgModule({
@@ -129,6 +127,7 @@ const appRoutes: Routes = [
     RecipeService,
     IngredientListService,
     IngredientSearchService,
+    CheckIngredientUseService,
     RecipeIngredientService,
     UnitService,
     CategoryService,

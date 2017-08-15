@@ -14,7 +14,7 @@ import {Unit} from '../../models/unit';
   providers: [IngredientService]
 })
 
-export class IngredientListComponent implements OnInit {    //////////// change name
+export class IngredientListComponent implements OnInit {
 
   /** Variables used to store the ingredients**/
   @Input() ingredients: Array<Ingredient>;
@@ -35,7 +35,7 @@ export class IngredientListComponent implements OnInit {    //////////// change 
   constructor(private ingredientListService: IngredientListService,
               private ingredientSearchService: IngredientSearchService,
               private router: Router,
-              private ingredientService: IngredientService) {
+              private ingredientService: IngredientService) { 
   }
 
   ngOnInit() {
@@ -47,7 +47,6 @@ export class IngredientListComponent implements OnInit {    //////////// change 
       this.units = new Array<Unit>();
       this.units = data;
     });
-
 
 
   }
