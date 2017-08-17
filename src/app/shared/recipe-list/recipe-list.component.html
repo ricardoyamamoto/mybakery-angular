@@ -30,7 +30,7 @@
     <md-grid-tile-footer>
       <h3 md-line>{{recipe.title}}</h3>
       <span md-line>Preparation : {{recipe.preparationTime}} mins</span>
-        <button md-icon-button (click)="selectedRecipe = recipe" routerLink="/users">
+        <button md-icon-button (click)="selectedRecipe = recipe" [routerLink]="['/recipe-detail',recipe._id]">
         <md-icon>info</md-icon>
       </button>
     </md-grid-tile-footer>

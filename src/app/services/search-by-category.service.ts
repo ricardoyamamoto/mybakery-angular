@@ -17,10 +17,10 @@ export class SearchByCategoryService {
   readSearchedRecipes(categoryId: string): Observable<Recipe[]> {
 
     this.url = `http://localhost:3000/search-by-category/?q=${categoryId}`;
-
+    console.log(this.url);
     return this.http
         .get(this.url)
         .map(response => response.json() as Recipe[]);
-    
+
   }
 }

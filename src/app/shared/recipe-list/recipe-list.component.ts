@@ -46,11 +46,12 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
 
+    // filter the keyword according to user input using FormControl
     this.filteredKeywords = this.myControl.valueChanges
       .startWith(null)
       .map(val => val ? this.filter(val) : this.keywords.slice());
 
-    const searchSource = this.searchTermStream
+    const searchResult = this.searchTermStream
       .debounceTime(1000)
       .distinctUntilChanged()
       .map(searchTerm => {
@@ -58,13 +59,13 @@ export class RecipeListComponent implements OnInit {
         return {search: searchTerm, page: 1};
       });
 
-    const pageSource = this.pageStream.map(pageNumber => {
-      this.page = pageNumber;
-      return {search: this.terms, page: pageNumber};
+    const pageResult = this.pageStream.map(pageNum => {
+      this.page = pageNum;
+      return {search: this.terms, page: pageNum};
     });
 
-    const source = Observable.from(pageSource)
-      .merge(Observable.from(searchSource))
+    const finalResult = Observable.from(pageResult)
+      .merge(Observable.from(searchResult))
       .startWith({search: this.terms, page: this.page})
       .switchMap((params: {search: string, page: number}) => {
         return this.recipeService.list(params.search, params.page);
@@ -73,10 +74,10 @@ export class RecipeListComponent implements OnInit {
 
 
     // test only
-    source.subscribe(val => console.log(val))
+    finalResult.subscribe(val => console.log(val))
 
-    this.total$ = source.pluck('total');
-    this.items$ = source.pluck('items');
+    this.total$ = finalResult.pluck('total');
+    this.items$ = finalResult.pluck('items');
     this.total$.subscribe(val => console.log(val));
     this.items$.subscribe(val => console.log(val));
   }
