@@ -24,14 +24,11 @@ import {UserListService} from './services/user-list.service';
 import {UserService} from './services/user.service';
 import {UserDetailComponent} from './user/user-detail.component';
 
-import {IngredientItemComponent} from './ingredient/ingredient-list/ingredient-item.component';
-import {IngredientComponent} from './ingredient/ingredient.component';
 import {IngredientDetailComponent} from './ingredient/ingredient-detail/ingredient-detail.component';
 import {IngredientListComponent} from './ingredient/ingredient-list/ingredient-list.component';
-import {IngredientListLisaComponent} from './ingredient/ingredient-list/ingredient-list.component.lisa';  //////
 import {IngredientListService} from './services/ingredient-list.service';
 import {IngredientSearchService} from './services/ingredient-search.service';
-
+import {CheckIngredientUseService} from './services/check-ingredient-use.service';
 
 import {TopToolbarComponent} from './shared/header/top-toolbar.component';
 import {SidenavComponent} from './shared/sidenav/sidenav.component';
@@ -71,8 +68,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'users', component: UserListComponent},
   {path: 'user-detail', component: UserDetailComponent},
-  {path: 'ingredient', component: IngredientComponent},
-  {path: 'ingredients', component: IngredientListLisaComponent},
+  {path: 'ingredients', component: IngredientListComponent},
   {path: 'detailed-search', component: DetailedSearchComponent},
   {path: 'recipe', component: AddRecipeComponent},
   {path: 'recipe-ingredient', component: RecipeIngredientComponent},
@@ -93,9 +89,6 @@ const appRoutes: Routes = [
     TopToolbarComponent,
     UserDetailComponent,
     IngredientListComponent,
-    IngredientListLisaComponent,
-    IngredientItemComponent,
-    IngredientComponent,
     IngredientDetailComponent,
     TopToolbarComponent,
     SidenavComponent,
@@ -138,6 +131,7 @@ const appRoutes: Routes = [
     RecipeService,
     IngredientListService,
     IngredientSearchService,
+    CheckIngredientUseService,
     RecipeIngredientService,
     UnitService,
     CategoryService,
