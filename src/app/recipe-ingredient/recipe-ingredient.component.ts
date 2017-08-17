@@ -124,7 +124,6 @@ export class RecipeIngredientComponent implements OnInit {
     this.selectedIngredient = recipeIngredient.ingredient;
     this.quantity = recipeIngredient.quantity;
     this.selectedUnit = recipeIngredient.unit;
-    this.createForm();
     this.notify.emit(this.recipeIngredientDatabase.data);
   }
 
