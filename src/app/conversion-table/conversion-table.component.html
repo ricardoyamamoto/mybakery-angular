@@ -19,14 +19,9 @@
     <input hidden name="_id" formControlName="_id" [(ngModel)]="_id">
   </span>
   <div>
-    <span>
-      <button md-raised-button (click)="saveConversion()" [disabled]="!conversionTableForm.valid">
-        Add Conversion
-      </button>
-    </span>
-    <span>
-      <button md-raised-button (click)="goBack()">Back</button>
-    </span>
+    <button md-raised-button (click)="saveConversion()" [disabled]="!conversionTableForm.valid">
+      Add Conversion
+    </button>
   </div>
 
   <div *ngIf="(!conversionTableForm.pristine || conversionTableForm.touched) && conversionTableForm.invalid" style="color:red">

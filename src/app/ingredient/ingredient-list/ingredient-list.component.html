@@ -32,7 +32,6 @@
       <th>Description</th>
       <th>Default Unit</th>
       <th></th>
-      <th></th>
     </tr>
     <tr *ngFor="let ingredient of ingredients">
       <!-- <td>{{ingredient._id}}</td> -->
@@ -40,7 +39,6 @@
       <td>{{ingredient.description}}</td>
       <td>{{ingredient.defaultUnit.unit}}</td>
       <td><button md-raised-button (click)="editEnabled(ingredient, ingredient.defaultUnit)">Edit</button></td>
-      <td><button md-raised-button [routerLink]="['/conversion-table',ingredient._id]">Conversion Table</button>
     </tr>
   </table>
 
