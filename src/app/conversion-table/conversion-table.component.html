@@ -1,0 +1,80 @@
+<h4>Conversion Table</h4>
+<h5 *ngIf="ingredient">
+  Ingredient: {{ingredient.name}}
+</h5>
+<form [formGroup]="conversionTableForm" novalidate>
+
+  <span *ngIf="ingredient">
+    <label>One </label>
+    <select placeholder="Unit" [(ngModel)]="unit" formControlName="unitFormControl" #formUnit >
+      <option  *ngFor="let unit of units" [ngValue]="unit"
+               ngDefaultControl>
+        {{unit.unit}}
+      </option>
+    </select>
+    <label> is equivalent to </label>
+    <input name="quantity" placeholder="Quantity" [(ngModel)]="quantity"
+           formControlName="quantityFormControl" type="number" min="1" #formquantity>
+    <label>{{ingredient.defaultUnit.unit}} of {{ingredient.name}}</label>
+    <input hidden name="_id" formControlName="_id" [(ngModel)]="_id">
+  </span>
+  <div>
+    <button md-raised-button (click)="saveConversion()" [disabled]="!conversionTableForm.valid">
+      Add Conversion
+    </button>
+  </div>
+
+  <div *ngIf="(!conversionTableForm.pristine || conversionTableForm.touched) && conversionTableForm.invalid" style="color:red">
+    <div *ngIf="conversionTableForm.controls.quantityFormControl.errors?.required">Quantity is mandatory</div>
+    <div *ngIf="conversionTableForm.controls.quantityFormControl.errors?.gt">Quantity should be greater than zero.</div>
+    <div *ngIf="conversionTableForm.controls.unitFormControl.errors?.required">Unit is mandatory</div>
+  </div>
+
+
+
+  <div >
+    <md-table #table [dataSource]="dataSource">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+
+      <!-- Default Unit Column -->
+      <ng-container cdkColumnDef="defaultUnit">
+        <md-header-cell *cdkHeaderCellDef> Default Unit </md-header-cell>
+        <md-cell *cdkCellDef="let conversionRecord"> {{conversionRecord.ingredient.defaultUnit.unit}} </md-cell>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container cdkColumnDef="quantity">
+        <md-header-cell *cdkHeaderCellDef> Quantity </md-header-cell>
+        <md-cell *cdkCellDef="let conversionRecord"> {{conversionRecord.quantity}} </md-cell>
+      </ng-container>
+
+      <!-- Unit ID Column -->
+      <ng-container cdkColumnDef="unitObject">
+        <md-header-cell *cdkHeaderCellDef>Unit ID</md-header-cell>
+        <md-cell *cdkCellDef="let conversionRecord" > {{conversionRecord.unit}} </md-cell>
+      </ng-container>
+
+      <!-- Unit description Column -->
+      <ng-container cdkColumnDef="unit">
+        <md-header-cell *cdkHeaderCellDef>Unit</md-header-cell>
+        <md-cell *cdkCellDef="let conversionRecord" > {{conversionRecord.unit.unit}} </md-cell>
+      </ng-container>
+
+      <!-- Edit Button Column -->
+      <ng-container cdkColumnDef="edit">
+        <md-header-cell *cdkHeaderCellDef></md-header-cell>
+        <md-cell *cdkCellDef="let conversionRecord" >
+          <button md-raised-button (click)="editConversion(conversionRecord)" >Edit</button>
+        </md-cell>
+      </ng-container>
+
+
+      <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+      <md-row *cdkRowDef="let conversionRecord; columns: displayedColumns;"></md-row>
+    </md-table>
+  </div>
+
+</form>

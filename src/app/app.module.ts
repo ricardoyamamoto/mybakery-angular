@@ -63,7 +63,8 @@ import {IngredientService} from './services/ingredient.service';
 import {MdlModule} from '@angular-mdl/core';
 import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
 import { EditIngredientComponent } from './ingredient/edit-ingredient/edit-ingredient.component';
-
+import { ConversionTableComponent } from './conversion-table/conversion-table.component';
+import {ConversionTableService} from './services/conversion-table.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -78,8 +79,8 @@ const appRoutes: Routes = [
   {path: 'category', component: CategoryComponent},
   {path: 'view-recipe', component: ViewRecipeComponent},
   {path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent},
-  {path: 'edit-recipe/:id', component: EditRecipeComponent}
-
+  {path: 'edit-recipe/:id', component: EditRecipeComponent},
+  {path: 'conversion-table/:id', component: ConversionTableComponent}
 
 ];
 
@@ -110,7 +111,8 @@ const appRoutes: Routes = [
     ViewRecipeDetailsComponent,
     EditRecipeComponent,
     AddIngredientComponent,
-    EditIngredientComponent
+    EditIngredientComponent,
+    ConversionTableComponent
   ],
   imports: [
     Angular2FontawesomeModule,
@@ -139,7 +141,9 @@ const appRoutes: Routes = [
     RecipeIngredientService,
     UnitService,
     CategoryService,
-    CustExtBrowserXhr
+    CustExtBrowserXhr,
+    ConversionTableService,
+    IngredientService
   ],
   bootstrap: [AppComponent]
 })

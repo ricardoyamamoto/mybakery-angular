@@ -16,6 +16,11 @@ export class IngredientService {
       .map((response: Response) => response.json());
   }
 
+  findById(id: string) {
+    return this.http.get(`http://localhost:3000/ingredient/${id}`)
+      .map(response => response.json() as Ingredient);
+  }
+
   readUnits() {
 
     return this.http.get('http://localhost:3000/unit/')
