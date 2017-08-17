@@ -57,6 +57,7 @@ import {ViewRecipeComponent} from './recipe/view-recipe/view-recipe.component';
 import {ViewRecipeDetailsComponent} from './recipe/view-recipe-details/view-recipe-details.component';
 import {EditRecipeComponent} from './recipe/edit-recipe/edit-recipe.component';
 import {IngredientService} from './services/ingredient.service';
+import { InventoryIngredientListComponent } from './inventory/inventory-ingredient-list.component';
 import {MdlModule} from '@angular-mdl/core';
 import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
 import { EditIngredientComponent } from './ingredient/edit-ingredient/edit-ingredient.component';
@@ -76,6 +77,7 @@ const appRoutes: Routes = [
   {path: 'view-recipe', component: ViewRecipeComponent},
   {path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent},
   {path: 'edit-recipe/:id', component: EditRecipeComponent},
+  {path: 'inventory', component: InventoryIngredientListComponent},
   {path: 'conversion-table/:id', component: ConversionTableComponent}
 
 ];
@@ -105,6 +107,7 @@ const appRoutes: Routes = [
     EditRecipeComponent,
     AddIngredientComponent,
     EditIngredientComponent,
+    InventoryIngredientListComponent,
     ConversionTableComponent
   ],
   imports: [

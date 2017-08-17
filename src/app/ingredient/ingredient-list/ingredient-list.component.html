@@ -27,14 +27,14 @@
   </div>
   <table style="padding:50px">
     <tr>
-      <th>Id</th>
+      <!-- <th>Id</th> -->
       <th>Name</th>
       <th>Description</th>
       <th>Default Unit</th>
       <th></th>
     </tr>
     <tr *ngFor="let ingredient of ingredients">
-      <td>{{ingredient._id}}</td>
+      <!-- <td>{{ingredient._id}}</td> -->
       <td>{{ingredient.name}}</td>
       <td>{{ingredient.description}}</td>
       <td>{{ingredient.defaultUnit.unit}}</td>
@@ -48,7 +48,7 @@
   <app-add-ingredient [units]=units></app-add-ingredient>
 </div>
 
-<<div [hidden]="switch3">
+<div [hidden]="switch3">
 
   <app-edit-ingredient [units]=units [myIngredient]=myIngredient [myUnit]=myUnit [delButtonEnabled]=deleteButtonEnabled></app-edit-ingredient>
 
