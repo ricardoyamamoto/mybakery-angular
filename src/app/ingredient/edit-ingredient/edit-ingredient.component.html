@@ -30,6 +30,11 @@
       <button mdl-button mdl-button-type="raised" mdl-colored="primary"
               mdl-ripple (click)="saveEditIngredient()">Save edition</button>
     </a>
+
+    <a href="ingredients" aria-label="ingredient">
+      <button #deleteButton *ngIf = delButtonEnabled mdl-button mdl-button-type="raised" mdl-colored="primary"
+              mdl-ripple (click)="deleteIngredient()">Delete Ingredient</button>
+    </a>
   </p>
 
   <!--this is for the button with the arrow-->

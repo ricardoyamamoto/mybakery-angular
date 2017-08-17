@@ -47,4 +47,17 @@ export class IngredientService {
     }).map((data: Response) => data.json());
 
   }
+
+  deleteData(myIngredient: Ingredient) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete(`http://localhost:3000/ingredient/${myIngredient._id}`,
+      {headers: headers}).map((data: Response) => data.json());
+
+  }
+
+  getUsedIngredient() {
+    return this.http.get('http://localhost:3000/recipe/all')
+      .map((response: Response) => response.json());
+  }
 }
