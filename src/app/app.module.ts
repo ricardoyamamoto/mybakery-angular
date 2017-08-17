@@ -64,6 +64,10 @@ import { EditIngredientComponent } from './ingredient/edit-ingredient/edit-ingre
 import { ConversionTableComponent } from './conversion-table/conversion-table.component';
 import {ConversionTableService} from './services/conversion-table.service';
 
+
+import { ProfitMarginComponent } from './profit-margin/profit-margin.component';
+import {ProfitMarginService} from './services/profit-margin';
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
@@ -78,7 +82,8 @@ const appRoutes: Routes = [
   {path: 'recipe-detail/:id', component: ViewRecipeDetailsComponent},
   {path: 'edit-recipe/:id', component: EditRecipeComponent},
   {path: 'inventory', component: InventoryIngredientListComponent},
-  {path: 'conversion-table/:id', component: ConversionTableComponent}
+  {path: 'conversion-table/:id', component: ConversionTableComponent},
+   {path: 'profit-margin', component: ProfitMarginComponent}
 
 ];
 
@@ -108,7 +113,8 @@ const appRoutes: Routes = [
     AddIngredientComponent,
     EditIngredientComponent,
     InventoryIngredientListComponent,
-    ConversionTableComponent
+    ConversionTableComponent,
+    ProfitMarginComponent
   ],
   imports: [
     Angular2FontawesomeModule,
@@ -140,7 +146,8 @@ const appRoutes: Routes = [
     CategoryService,
     CustExtBrowserXhr,
     ConversionTableService,
-    IngredientService
+    IngredientService,
+    ProfitMarginService
   ],
   bootstrap: [AppComponent]
 })

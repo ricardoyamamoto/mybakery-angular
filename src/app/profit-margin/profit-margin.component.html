@@ -1,0 +1,22 @@
+ <h3>Profit Margin</h3>
+
+  <div style="padding:50px">
+
+
+
+  <p>
+    <mdl-textfield #nameProfitMarginTextBox   type="text" label="profit Margin" [(ngModel)]="myprofitmargin.value"
+                   floating-label autofocus></mdl-textfield>
+
+   
+
+    <button id="menu-units2" class="mdl-button mdl-js-button mdl-button--icon">
+      <i class="material-icons">arrow_drop_down</i>
+    </button>
+  </p>
+
+   
+      <button mdl-button mdl-button-type="raised" mdl-colored="primary"
+              mdl-ripple (click)="saveConfig()">Save Configuration</button>
+  
+  </div>
