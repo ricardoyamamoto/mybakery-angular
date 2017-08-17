@@ -1,0 +1,56 @@
+<div [hidden]="switch2">
+
+  <h3>Ingredient Inventory</h3>
+
+  <div style="padding:50px">
+
+
+    <form class="searchBox" fxFlex = "30" fxLayout = "column">
+
+      <div class="input-group input-group-sm">
+        <md-input-container>
+          <md-icon mdPrefix style="color:mediumpurple;font-size:120%">search</md-icon>
+          <input #searchBox type="search"  mdInput class="form-control">
+          <!--<input #searchBox>-->
+          <md-placeholder>Ingredient Name</md-placeholder>
+        </md-input-container>
+        <p>
+          <!-- <button md-raised-button type="submit" (click)="showSearchResults(searchBox.value)">Search</button> -->
+          <button mdl-button mdl-button-type="raised" mdl-colored="primary"
+              mdl-ripple (click)=showSearchResults(searchBox.value)>Search</button>
+          <button mdl-button mdl-button-type="raised"
+              mdl-ripple (click)="resetSearchResults(); searchBox.value = ''">Reset</button>
+        </p>
+      </div>
+    </form>
+  </div>
+  <table style="padding:50px">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Default Unit</th>
+      <th>Quantity (editable)</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let ingredient of ingredients">
+      <td>{{ingredient.name}}</td>
+      <td>{{ingredient.description}}</td>
+      <td>{{ingredient.defaultUnit.unit}}</td>
+      <!-- <td>{{ingredient.quantity}}</td> -->
+      <td>
+        <md-input-container style="width:50%">
+          <input #quantityBox [(ngModel)]="ingredient.quantity" mdInput class="form-control">
+        </md-input-container>
+      </td>
+      <td>
+        <button mdl-button mdl-button-type="raised"
+            mdl-ripple (click)=saveEditIngredientQuantity(ingredient,quantityBox.value)>Confirm Change
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+
+

@@ -3,4 +3,5 @@ export class Ingredient {
   name: string;
   description: string;
   defaultUnit: string;
+  quantity: number;
 }
