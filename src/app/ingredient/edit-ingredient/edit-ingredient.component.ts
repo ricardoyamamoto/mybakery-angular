@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {IngredientService} from '../../services/ingredient.service';
 import {Unit} from '../../models/unit';
@@ -18,8 +18,10 @@ export class EditIngredientComponent implements OnInit {
   @Input() myUnit: Unit = new Unit();
   @ViewChild('unitTextBox2') unitTextBox;
   @Input() delButtonEnabled = false;
+  private myConfirm;
 
-  constructor(private router: Router, private ingredientListService: IngredientService) { }
+  constructor(private router: Router, private ingredientListService: IngredientService) {
+  }
 
   ngOnInit() {
   }
@@ -39,8 +41,13 @@ export class EditIngredientComponent implements OnInit {
 
   deleteIngredient() {
 
-    this.ingredientListService.deleteData(this.myIngredient).subscribe(data => console.log(data));
+    this.myConfirm = confirm('Are you sure you wan to delete this ingredient?');
 
+    if (this.myConfirm) {
+
+      this.ingredientListService.deleteData(this.myIngredient).subscribe(data => console.log(data));
+
+    }
   }
 
 }
