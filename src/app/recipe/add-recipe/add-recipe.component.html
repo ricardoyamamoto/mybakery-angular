@@ -36,6 +36,8 @@
     <textarea rows="10" cols="100" mdInput placeholder={{description}} name="description" [(ngModel)]="addRecipe.description" required>
     </textarea>
   </md-input-container>
+  <!--change url -->
+  <image-upload url="https://httpbin.org/status/200"></image-upload>
 
   <div *ngIf="recipeForm.form.invalid" style="color: red">Fill in the required fields in order to add the recipe.</div>
   <table>

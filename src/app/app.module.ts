@@ -13,6 +13,8 @@ import {
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { ImageUploadModule } from 'angular2-image-upload';
+
 import {CdkTableModule} from '@angular/cdk';
 
 
@@ -128,6 +130,7 @@ const appRoutes: Routes = [
     MdListModule, MdToolbarModule, MdGridListModule, MdAutocompleteModule,
     MdTableModule, MdSelectModule, MdChipsModule, MdPaginatorModule,
     ReactiveFormsModule,
+    ImageUploadModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     MdlModule
   ],
