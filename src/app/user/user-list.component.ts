@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserListService } from './user-list.service';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -9,20 +9,16 @@ export class UserListComponent implements OnInit {
 
   users: Array<any>;
 
-  constructor() {
-    this.users = [
-      {
-        'name': 'Tony Stark',
-        'username': 'tonystark'
-      }, {
-        'name': 'John Wick',
-        'username': 'johnwick'
-      }
-    ];
-
+  constructor(private userListService: UserListService) {
   }
 
   ngOnInit() {
+    this.userListService.readAll().subscribe(users => {
+      this.users = users;
+    });
+
+
+
   }
 
 }

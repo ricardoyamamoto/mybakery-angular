@@ -1,0 +1,47 @@
+
+<div>
+  <h2>{{header}}</h2>
+</div>
+
+<form class="example-form">
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder={{recipeName}} name="recipeName" [(ngModel)]="addRecipe.recipeName" required >
+  </md-input-container>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-input-container class="example-full-width">
+      <input mdInput placeholder={{category}} name="category" [(ngModel)]="addRecipe.category" required>
+    </md-input-container></td></tr>
+    <tr>
+    <td><md-input-container class="example-full-width">
+      <input type="number" mdInput placeholder={{numberOfServings}}   name="numberOfServings" [(ngModel)]="addRecipe.numberOfServings" required>
+    </md-input-container></td>
+  </tr></table>
+
+   <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-input-container class="example-full-width">
+      <input type="number" mdInput placeholder={{preparationTime}} name="preparationTime" [(ngModel)]="addRecipe.preparationTime" required>
+         </md-input-container>
+
+  </td>
+        </tr>
+<tr>
+    <td><md-input-container class="example-full-width">
+      <input type= 'number' mdInput placeholder={{cookingTime}} name="cookingTime" [(ngModel)]="addRecipe.cookingTime" required>
+    </md-input-container></td>
+    </tr>
+    <tr>
+    <td><md-input-container class="example-full-width">
+      <input type='text' mdInput placeholder={{author}} name="author" [(ngModel)]="addRecipe.author" required>
+
+    </md-input-container></td>
+  </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+      <button type="submit" md-raised-button (click)="save()"> {{submit}}</button>
+      </td>
+    </tr>
+  </table>
+</form>
