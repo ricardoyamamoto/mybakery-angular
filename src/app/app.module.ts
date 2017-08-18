@@ -117,6 +117,7 @@ const appRoutes: Routes = [
     EditRecipeComponent,
     AddIngredientComponent,
     EditIngredientComponent,
+    //image upload
     FileSelectDirective,
     FileDropDirective
   ],

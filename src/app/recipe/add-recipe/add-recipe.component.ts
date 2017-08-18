@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import {RecipeService} from '../../services/recipe.service';
+//for image
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
 
 import { Recipe } from '../../models/recipe';
@@ -28,6 +29,7 @@ export class AddRecipeComponent implements OnInit {
   cookingTime = 'Cooking Time';
   submit = 'Submit';
   back = 'Back';
+  //for image upload
   public uploader:FileUploader = new FileUploader({url:'http://localhost:3001/upload'});
 
   @Input() addRecipe: JsonRecipe;
