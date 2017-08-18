@@ -1,0 +1,7 @@
+<div class="paging">
+<ul *ngIf="totalPages() > 1" class="pagination pagination-sm no-margin pull-right">
+  <li *ngIf="page != 1"><button md-mini-fab (click)="pageClicked(prevPage())">«</button></li>
+  <li *ngFor="let p of pagesRange()"><button md-mini-fab (click)="pageClicked(p)">{{p}}</button></li>
+  <li *ngIf="totalPages() > page"><button md-mini-fab (click)="pageClicked(nextPage())">»</button></li>
+</ul>
+</div>

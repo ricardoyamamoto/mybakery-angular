@@ -1,0 +1,43 @@
+<h3>Edit Ingredient</h3>
+<div style="padding: 30px">
+  <p>
+    <mdl-textfield #nameIngredientTextBox   type="text" label="Name of ingredient" [(ngModel)]="myIngredient.name"
+                   floating-label autofocus></mdl-textfield>
+
+    <mdl-textfield #unitTextBox2 readonly style="width: 120px" type="text" label="Default Unit"
+                   [(ngModel)]="myUnit.shortDescription" floating-label autofocus>
+    </mdl-textfield>
+
+    <button id="menu-units2" class="mdl-button mdl-js-button mdl-button--icon">
+      <i class="material-icons">arrow_drop_down</i>
+    </button>
+  </p>
+  <div class="mdl-textfield mdl-js-textfield" >
+  <textarea class="mdl-textfield__input" type="text" rows= "2"  floating-label id="descriptionIngredientTextBox"
+            [(ngModel)]="myIngredient.description" ></textarea>
+    <label class="mdl-textfield__label" for="descriptionIngredientTextBox" >Description</label>
+  </div>
+
+  <br />
+  <p>
+
+    <a href="ingredients" aria-label="ingredient">
+      <button mdl-button mdl-button-type="raised" mdl-colored="accent"
+              mdl-ripple >Cancel</button>
+    </a>
+
+    <a href="ingredients" aria-label="ingredient">
+      <button mdl-button mdl-button-type="raised" mdl-colored="primary"
+              mdl-ripple (click)="saveEditIngredient()">Save edition</button>
+    </a>
+  </p>
+
+  <!--this is for the button with the arrow-->
+  <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu__item--full-bleed-divider" style="height: 200px; overflow: auto"  for="menu-units2" required>
+    <li class="mdl-menu__item " (click)="infoUnit(unit)"  *ngFor="let unit of units">
+      {{unit.shortDescription}}</li>
+  </ul>
+
+  <hr>
+
+</div>

@@ -1,0 +1,12 @@
+<div>
+<h2>Recipe List</h2>
+</div>
+<md-list>
+<md-list-item *ngFor="let recipe of recipes" isRippleEnabled="true">
+  <span md-line>
+ {{recipe.title}}
+  <button md-raised-button [routerLink]="['/recipe-detail',recipe._id]">View</button>
+  <button md-raised-button  [routerLink]="['/edit-recipe' ,recipe._id]">Edit</button>
+  </span>
+</md-list-item>
+</md-list>

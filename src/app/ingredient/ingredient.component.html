@@ -1,0 +1,11 @@
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet mdl-cell--5-col-desktop">
+    <h3> ingredient List </h3>
+    <app-ingredient-list (ingredientSelected) = "selectedIngredient = $event"></app-ingredient-list>
+
+  </div>
+  <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--4-col-tablet mdl-cell--7-col-desktop">
+    <app-ingredient-detail [selectedIngredient]="selectedIngredient"></app-ingredient-detail>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+mat-grid-list {
+  max-width: 1403px;
+}
+
+.list-recipe {
+  margin: 20px 5% 50px 5%;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 300;
+  margin: 0;
+  padding: 50px;
+  color: hsla(0,0%,100%,.87);
+}
+
+.page-header {
+  background: #673ab7;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.page-header button {
+  color: hsla(0,0%,100%,.87);
+  background-color:mediumpurple;
+}
+
+.searchIcon {
+  color: mediumpurple;
+  font-size: large;
+}

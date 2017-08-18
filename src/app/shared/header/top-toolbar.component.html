@@ -1,0 +1,33 @@
+<md-toolbar color="primary">
+
+  <button md-button routerLink="/" >
+    <md-icon>cake</md-icon>
+    <span>{{title}}</span>
+  </button>
+  <span fxFlex></span>
+
+  <!--<form (submit)="search(term.value)">-->
+    <!--<div class="input-group input-group-sm" style="margin-bottom: 10px;">-->
+      <!--<md-input-container>-->
+        <!--<md-icon mdPrefix style="color:mediumpurple;font-size:120%">search</md-icon>-->
+        <!--<input type="search"  mdInput [formControl]="myControl" [mdAutocomplete]="auto" #term ()="trigerSearch()" value="{{ terms }}" class="form-control">-->
+        <!--<md-placeholder>Search Recipe</md-placeholder>-->
+      <!--</md-input-container>keyup-->
+
+      <!--<md-autocomplete #auto="mdAutocomplete">-->
+        <!--<md-option *ngFor="let keyword of filteredKeywords | async" [value]="keyword">-->
+          <!--{{ keyword }}-->
+        <!--</md-option>-->
+      <!--</md-autocomplete>-->
+
+      <!--<div class="input-group-btn">-->
+        <!--<button type="submit" class="btn btn btn-default btn-flat"><i class="fa fa-search"></i></button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</form>-->
+
+
+  <button md-button routerLink="/login"><fa [name]="'sign-in'" [size]="2"></fa> Sign In</button>
+
+</md-toolbar>
+

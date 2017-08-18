@@ -1,0 +1,51 @@
+<h3>Recipe Search</h3>
+
+<div style="padding: 30px">
+    <form class="searchBox" fxFlex = "30" fxLayout = "column">
+
+      <div>
+        <label>Search Recipe by: </label>
+        <app-search-criterion-selector style="padding:6px" (select)="criterion = $event"></app-search-criterion-selector>
+        <!--{{criterion}}-->
+      </div>
+
+      <div class="input-group input-group-sm">
+        <md-input-container>
+          <md-icon mdPrefix style="color:mediumpurple;font-size:130%">search</md-icon>
+          <input #searchBox type="search"  mdInput class="form-control">
+          <md-placeholder>Search terms</md-placeholder>
+        </md-input-container>
+        <p>
+          <button md-raised-button type="submit" (click)="showSearchResults(searchBox.value)">Search</button>
+          <button md-raised-button type="submit" (click)="resetSearchResults(); searchBox.value = ''">Reset</button>
+        </p>
+      </div>
+    </form>
+</div>
+
+<table style="padding:50px">
+  <tr>
+    <!--<th>ID</th>-->
+    <th>Date Last Modified</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let recipe of recipes">
+    <!--<td *ngIf="recipe">{{recipe._id}}</td>-->
+    <td>{{recipe.lastModified}}</td>
+    <td>{{recipe.title}}</td>
+    <td>
+      <md-chip-list>
+        <md-chip *ngFor="let categ of recipe.category" isRippleEnabled="true">
+          {{categ.name}}
+        </md-chip>
+      </md-chip-list>
+    </td>
+    <td>{{recipe.description}}</td>
+    <td *ngIf="recipe"><button md-raised-button [routerLink]="['/recipe-detail',recipe._id]">View</button></td>
+    <td *ngIf="recipe"><button md-raised-button  [routerLink]="['/edit-recipe' ,recipe._id]">Edit</button></td>
+  </tr>
+</table>

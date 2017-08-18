@@ -1,0 +1,5 @@
+<select name="searchCriteria" (change)="select.emit($event.target.value)">
+    <option *ngFor="let criterion of criteria" [value]="criterion">
+    {{criterion}}
+    </option>
+</select>

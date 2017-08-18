@@ -1,0 +1,25 @@
+.footer {
+  margin-top: 80px;
+  padding: 12px;
+  font-size: 12px;
+  background-color: #673ab7;
+  color: hsla(0,0%,100%,.87);
+}
+
+.footer-list {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  padding: 8px;
+}
+.copyright {
+  margin-top: 24px;
+  text-align: right;
+}
