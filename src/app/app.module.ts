@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, BrowserXhr} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+
 import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
 import {Angular2FontawesomeModule} from 'angular2-fontawesome';
 import {
@@ -116,7 +118,9 @@ const appRoutes: Routes = [
     EditIngredientComponent,
     InventoryIngredientListComponent,
     ConversionTableComponent,
-    ProfitMarginComponent
+    ProfitMarginComponent,
+    FileSelectDirective,
+    FileDropDirective
   ],
   imports: [
     Angular2FontawesomeModule,

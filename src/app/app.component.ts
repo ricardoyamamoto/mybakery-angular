@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Welcome to myBakery!';
+  public uploader:FileUploader = new FileUploader({url:'http://localhost:3001/upload'});
 
   ngOnInit() {
 

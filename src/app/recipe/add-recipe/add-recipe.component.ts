@@ -29,6 +29,8 @@ export class AddRecipeComponent implements OnInit {
   cookingTime = 'Cooking Time';
   submit = 'Submit';
   back = 'Back';
+  // for image upload
+  public uploader: FileUploader = new FileUploader({url: 'http://localhost:3001/upload'});
 
   @Input() addRecipe: JsonRecipe;
   categories: string[];
